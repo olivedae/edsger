@@ -1,8 +1,9 @@
 <div align="center">
     <img src="info/logo.jpg" height="40%" width="40%">
 </div>
-
-> A route for the places you'll go
+<p align="center">
+    <i>A route for the places you'll go</i>
+</p>
 
 ## Dependencies
 
