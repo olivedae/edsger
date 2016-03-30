@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/hooked":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/hooked","hostpath":"/Users/richardshlyakhov/Desktop/hooked","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/richardshlyakhov/Dev/Github/hooked","disabled":false,"__vagrantfile":true}}}

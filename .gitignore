@@ -15,6 +15,7 @@ storage/
 
 # Vagrant specific
 Homestead.yaml
+Homestead.json
 
 # OS X specific
 .DS_Store
@@ -22,5 +23,3 @@ Homestead.yaml
 # Vim specific
 .*.swp
 .*.swo
-
-*.swn
