@@ -12,3 +12,15 @@ storage/
 .env.php
 .env
 .env.example
+
+# Vagrant specific
+Homestead.yaml
+
+# OS X specific
+.DS_Store
+
+# Vim specific
+.*.swp
+.*.swo
+
+*.swn
