@@ -1,5 +1,8 @@
-# hooked
-A route for the places you'll go
+<div align="center">
+    <img src="info/logo.png" height="40%" width="40%">
+</div>
+
+> A route for the places you'll go
 
 ## Dependencies
 
