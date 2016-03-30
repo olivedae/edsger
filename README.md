@@ -10,6 +10,7 @@ A route for the places you'll go
 - Vagrant
 - VirtualBox
 - MySQL
+- Homestead
 
 ## Usage
 
@@ -17,7 +18,7 @@ A route for the places you'll go
 # Mac/Linux:
 user:hooked php vendor/bin/homestead make
 # Windows
-vendor\\bin\\homestead make
+user:hooked vendor\\bin\\homestead make
 
 user:hooked vagrant up 
 ```
