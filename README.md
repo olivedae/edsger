@@ -1,11 +1,12 @@
-<div align="center">
-    <img src="info/logo.jpg" height="40%" width="40%">
-</div>
 <p align="center">
+    <img src="info/logo.jpg" height="55%" width="55%">
+</p>
+<p align="center" style="margin-bottom:50px;">
     <i>A route for the places you'll go</i>
 </p>
 
-## Dependencies
+
+### Dependencies
 
 - php 7
 - Laravel
@@ -16,7 +17,7 @@
 - MySQL
 - Homestead
 
-## Usage
+### Usage
 
 ```
 # Mac/Linux:
