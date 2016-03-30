@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="info/logo.png" height="40%" width="40%">
+    <img src="info/logo.jpg" height="40%" width="40%">
 </div>
 
 > A route for the places you'll go
