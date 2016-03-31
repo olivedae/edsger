@@ -44,7 +44,7 @@ Homestead requires the "domains" for Nginx sites to be added to the `host` file 
 192.168.10.10 homestead.app
 ```
 
-Make sure the IP address listed is the one set in your `location/to/hooked/.homestead/Homestead.yaml` file. Once you have added the domain to your `hosts` file, you can access the site via your web browser:
+Make sure the IP address listed is the one set in your `location/to/hooked/Homestead.yaml` file. Once you have added the domain to your `hosts` file, you can access the site via your web browser:
 
 ```
 http://homestead.app
