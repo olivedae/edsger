@@ -29,6 +29,8 @@
 
 - Boxes and routes will also keep track of the last visited and updated time.
 
+- All routes that are not manually put into a box are automatically placed in the General (can go by other names such as `Default`) box.
+
 
 ### Routes
 
