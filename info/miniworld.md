@@ -1,6 +1,6 @@
 # Mini World Description
 
-> An informal way for describing Hooked so a schema can come a roll'n
+> An informal way for describing Hooked and tracking schema development as it comes a roll'n
 
 ### Users
 
