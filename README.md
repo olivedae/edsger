@@ -30,7 +30,7 @@ user:hooked php artisan migrate
 # For Mac/Linux:
 user:hooked php vendor/bin/homestead make
 # Otherwise Windows
-user:hooked vendor\\bin\\homestead make
+user:hooked vendor\bin\homestead make
 
 user:hooked vagrant up 
 ```
