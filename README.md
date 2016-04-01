@@ -11,7 +11,7 @@
 - php 7
 - Laravel
 - Composer
-- GNU make
+- GNU makefile
 - Vagrant
 - VirtualBox
 - MySQL
@@ -20,17 +20,19 @@
 ### Usage
 
 ```
-# Setting up your local environement
+# Getting Laravel up and going
+user:hooked composer install
+user:hooked php artisan migrate
+
+# Setting up your local environement for
+#   Homestead/Vagrant:
+
 # For Mac/Linux:
 user:hooked php vendor/bin/homestead make
 # Otherwise Windows
 user:hooked vendor\\bin\\homestead make
 
 user:hooked vagrant up 
-
-# Getting Laravel up and going
-user:hooked composer install
-user:hooked php artisan migrate
 ```
 
 Vagrant will launch and boot a virtual machine and automatically configure it for you.
