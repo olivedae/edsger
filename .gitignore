@@ -11,3 +11,5 @@ Homestead.json
 # Vim specific
 .*.swp
 .*.swo
+
+*.bak
