@@ -12,7 +12,7 @@ class CreateUserIconsTable extends Migration
      */
     public function up()
     {
-        Schema::create('UserIcons', function (Blueprint $table) {
+        Schema::create('user_icons', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')
@@ -31,6 +31,6 @@ class CreateUserIconsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('UserIcons');
+        Schema::drop('user_icons');
     }
 }
