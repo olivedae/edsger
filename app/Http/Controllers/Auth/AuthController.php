@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\UserIcon;
+use App\Classes\Identicon_Generator;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+
 
 class AuthController extends Controller
 {
@@ -66,11 +69,23 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'first_name' => $data['firstname'],
             'last_name' => $data['lastname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        // Now we want to generate a random user icon for this new user
+        $base_64_image = Identicon_Generator::createNewIcon($user->email);
+
+        $UserIcon = UserIcon::create([
+            'user_id' => $user->id,
+            'file_extension' => 'png',
+            'data' => $base_64_image,
+        ]);
+
+        return $user;
+
     }
 }

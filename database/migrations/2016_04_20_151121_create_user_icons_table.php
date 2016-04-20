@@ -12,14 +12,14 @@ class CreateUserIconsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_icons', function (Blueprint $table) {
+        Schema::create('UserIcons', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')
                   ->references('id')->on('users')
                   ->onDelete('cascade');
-            $table->binary('data');
-            $table->string('file_extension');
+            $table->string('data', 1500);
+            $table->string('file_extension', 5);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateUserIconsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('user_icons');
+        Schema::drop('UserIcons');
     }
 }

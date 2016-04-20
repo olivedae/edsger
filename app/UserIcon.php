@@ -4,12 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User_Icon extends Model
+class UserIcon extends Model
 {
+
+    protected $fillable = ['user_id'];
 
     public function user()
     {
-        $this->belongsTo(User:class);
+        $this->belongsTo(User::class);
     }
 
 }

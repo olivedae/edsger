@@ -26,7 +26,7 @@ class User extends Authenticatable
 
     public function icon()
     {
-        return $this->has(User_Icon::class);
+        return $this->has(UserIcon::class);
     }
 
 }
