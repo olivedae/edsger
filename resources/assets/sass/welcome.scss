@@ -1,0 +1,48 @@
+#welcome-hero {
+  height: 650px;
+
+  #welcome-map {
+    @include set-gutter(0);
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  #welcome-sidebar {
+    @include set-gutter(0);
+    @include box-shadow(-5px, 0, 6px, -6px, #4D4D4D);
+    height: 100%;
+        
+    .sidebar-description {
+      padding: 25px;
+      margin-top: 65px;
+
+      h1, p {
+        font-weight: 200;
+      }
+
+      h1 { 
+        font-size: 3.45em;
+      }
+
+      p {
+        font-size: 1.25em;
+      }
+    }
+
+    #welcome-register-form {
+      margin-top: 25px;
+        
+      .alert {
+        margin-top: -25px;
+      }
+    }
+  }
+}
+
+#welcome-info {
+  height: 750px;
+  border-top: 3px dashed lightgray;
+}
+

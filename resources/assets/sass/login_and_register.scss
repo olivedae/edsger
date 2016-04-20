@@ -1,0 +1,30 @@
+.login-register-image {
+  float: left;
+  img {
+    width: 85%;
+    height: auto;
+    opacity: .8;
+  }
+}
+
+input.reformat-input-with-label {
+  margin-top: -6px;
+}
+
+.login-register-header {
+  padding-bottom: 15px;
+
+  .login-register-title {
+    color: #424242;
+    font-size: 1.7em;
+    font-weight: 200;
+  }
+
+  .login-register-switch {
+    margin-top: 10px;
+  }
+}
+
+.login-register-top-buffer {
+  margin-top: 175px;
+}

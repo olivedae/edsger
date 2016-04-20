@@ -1,7 +1,17 @@
 <?php
 
 Route::get('/', ['as' => 'home', 'uses' => function() { 
-    return view('home'); 
+    if ( Auth::check() ) {
+        return redirect('/dashboard');
+    }
+    return view('welcome'); 
+}]);
+
+Route::get('dashboard', ['as' => 'dashboard', 'uses' => function() {
+    if ( Auth::check() ) {
+        return view('dashboard');
+    }
+    return redirect('/');
 }]);
 
 // Authentication routes...
