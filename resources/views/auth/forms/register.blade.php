@@ -22,33 +22,33 @@
     {!! csrf_field() !!}
 
     <div class="form-group">
-        <input type="text" name="firstname" class="form-control" placeholder="First name">
+        <input type="text" name="firstname" class="form-control input-lg" placeholder="First name">
     </div>
 
     <div class="form-group">
-        <input type="text" name="lastname" class="form-control" placeholder="Last name">
+        <input type="text" name="lastname" class="form-control input-lg" placeholder="Last name">
     </div>
 
     <div class="form-group">
-        <input type="email" name="email" class="form-control" placeholder="Email">
+        <input type="email" name="email" class="form-control input-lg" placeholder="Email">
     </div> 
 
     <div class="form-group">
-        <input type="password" name="password" class="form-control" placeholder="Password">
+        <input type="password" name="password" class="form-control input-lg" placeholder="Password">
     </div>
 
     <div class="form-group">
-        <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm password">
+        <input type="password" name="password_confirmation" class="form-control input-lg" placeholder="Confirm password">
     </div>
 
     <div class="checkbox col-md-7">
         <label class="control-label">
-            <input type="checkbox" name="terms"> I agree to <a href="#">Hooked terms</a>
+            <input type="checkbox" class="form-control reformat-input-with-label" name="terms"> I agree to <a href="#">Hooked terms</a>
         </label>
     </div>
 
     <div class="form-group col-md-3 col-md-offset-1">
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary btn-lg">Register</button>
     </div> 
 
 </form>

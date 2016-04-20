@@ -9,7 +9,7 @@
         <div class="row">
 
             <div id="welcome-map" class="col-md-8">
-                <img src="img/map.jpg" alt="Map">
+                <img src="img/map.png" alt="Map">
             </div>
 
             <div id="welcome-sidebar" class="col-md-4">

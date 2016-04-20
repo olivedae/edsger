@@ -22,21 +22,21 @@
     {!! csrf_field() !!}
 
     <div class="form-group">
-        <input type="email" name="email" class="form-control" id="email-input" placeholder="Email">
+        <input type="email" name="email" class="form-control input-lg" id="email-input" placeholder="Email">
     </div>
 
     <div class="form-group">
-        <input type="password" name="password" class="form-control" id="password-input" placeholder="Password">
+        <input type="password" name="password" class="form-control input-lg" id="password-input" placeholder="Password">
     </div> 
 
     <div class="checkbox col-md-6">
         <label class="control-label">
-            <input type="checkbox" name="remember_me"> Remember me
+            <input type="checkbox" class="form-control reformat-input-with-label" name="remember_me"> Remember me
         </label>
     </div>
     
     <div class="form-group col-md-3 col-md-offset-2">
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <button type="submit" class="btn btn-primary btn-lg">Sign in</button>
     </div> 
 
  </form> <!-- End of login form -->

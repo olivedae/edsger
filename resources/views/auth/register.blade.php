@@ -7,7 +7,7 @@
 <section id="register-container" class="container login-register-top-buffer">
     <div class="row">
         <div class="login-register-image col-md-4 col-md-offset-2">
-            <img src="img/road.jpg" alt="GPS Navigation">
+            <img src="img/gps.png" alt="GPS Navigation">
         </div>
 
         <div id="register-form" class="col-md-4">
