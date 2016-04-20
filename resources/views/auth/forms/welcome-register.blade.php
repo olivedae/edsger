@@ -33,7 +33,7 @@
 
     <div class="checkbox">
         <label class="control-label">
-            <input type="checkbox" class="form-control reformat-input-with-label" name="terms"> I agree to <a href="#">Hooked terms</a>
+            <input type="checkbox" name="terms"> I agree to <a href="#">Hooked terms</a>
         </label>
     </div> <!-- End of Hooked terms div -->
     
