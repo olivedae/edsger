@@ -6,11 +6,6 @@ header nav.navbar {
   border-bottom: #D4D4D4 1px solid;
 }
 
-a.navbar-brand img {
-  height: 25px;
-  width: 25px;
-}
-
 li.signed-in-as {
   margin-left: 20px;
 }
@@ -20,5 +15,23 @@ ul.dropdown-menu {
 }
 
 nav.navbar.navbar-default {
-    background: white;
+  background: white;
+}
+
+.header-user-icon {
+  border: 1px dashed #babdbe;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{
+	background-image: none;
+    background-color: white;
+	box-shadow: none;
+}
+
+ul.dropdown-menu li a:hover {
+	background: white;
+	box-shadow: none;
+	color: rgb(118, 152, 255);
 }
