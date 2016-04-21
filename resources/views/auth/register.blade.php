@@ -11,7 +11,7 @@
         </div>
 
         <div id="register-form" class="col-md-4">
-            @include('auth.forms.register');
+            @include('auth.forms.register')
         </div>
     </div>  
 </section>

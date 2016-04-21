@@ -47,7 +47,7 @@
         </label>
     </div>
 
-    <div class="form-group col-md-3 col-md-offset-1">
+    <div class="form-group col-md-3 col-md-offset-2">
         <button type="submit" class="btn btn-primary">Register</button>
     </div> 
 

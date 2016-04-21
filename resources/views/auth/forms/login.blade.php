@@ -35,7 +35,7 @@
         </label>
     </div>
     
-    <div class="form-group col-md-3 col-md-offset-2">
+    <div class="form-group col-md-3 col-md-offset-3 text-left">
         <button type="submit" class="btn btn-primary">Sign in</button>
     </div> 
 
