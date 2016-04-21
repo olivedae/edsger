@@ -1,1 +1,9 @@
-@import "custom";
+// Manifest SCSS file for Hooked
+
+@import "colors";
+@import "typography";
+@import "mixins";
+@import "headers";
+@import "login_and_register";
+@import "welcome";
+@import "misc";

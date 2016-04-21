@@ -1,45 +1,42 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
+@extends('layouts.app')
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+@section('title', 'Welcome')
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+@section('content')
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
+<section id="welcome-hero">
+    <div class="container-fluid">
+        <div class="row">
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
+            <div id="welcome-map" class="col-md-8">
+                <img src="img/map.jpg" alt="Map">
             </div>
+
+            <div id="welcome-sidebar" class="col-md-4">
+
+                <div class="sidebar-description text-center">
+                    <h1>Hooked works the way you do</h1>
+                    <p>
+                        Pour-over mlkshk locavore paleo seitan DIY
+                    </p>
+                </div> <!-- End of sidebar description -->
+
+                <div id="welcome-register-form" class="col-md-10 col-md-offset-1">
+                    @include('auth.forms.welcome-register')
+                </div> 
+
+            </div> <!-- End of sidebar div -->
+
+        </div> <!-- End of row div -->
+    </div> <!-- End of container div -->      
+</section> <!-- End of welcome-hero section -->
+
+<section id="welcome-info">
+    <div class="container">
+        <div class="text-center">
+            <h2>Lorel Ipsum<small> Subtext for header</small></h2>
         </div>
-    </body>
-</html>
+    </div>
+</section>
+
+@endsection

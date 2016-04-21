@@ -1,5 +1,5 @@
 <head>
-    <title>Hooked | @yield('title')</title>
+    <title>@yield('title') - Hooked</title>
     <link rel="stylesheet" href="{{ url('/') }}./css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="{{ url('/') }}./css/bootstrap-theme.min.css" type="text/css"/>
     <link rel="stylesheet" href="{{ url('/') }}./css/app.css" type="text/css"/>
