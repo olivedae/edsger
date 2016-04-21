@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{ url('/') }}./css/bootstrap-theme.min.css" type="text/css"/>
     <link rel="stylesheet" href="{{ url('/') }}./css/app.css" type="text/css"/>
 </head>
-    
+
 <body>
     <header id="header">
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -28,7 +28,7 @@
                             <li><a href="{{ URL::route('login') }}">Sign in</a>
                         @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }} <span class="caret"></span></a>                                </a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class='span6 offset4' height='35' width='35' src= {{ Auth::user()->icon->data }}> {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }} <span class="caret"></span></a>                                </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider" role="menu">
                                     <li class="signed-in-as">Signed in as <b>{{ Auth::user()->email }}</b></li>
 
@@ -51,9 +51,9 @@
             </div>
         </nav>
     </header>
-        
+
     @yield('content')
-        
+
     <footer id="footer">
         <div class="container">
             <div class="row">
