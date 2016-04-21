@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserIcon extends Model
 {
 
-    protected $fillable = ['user_id'];
+    protected $fillable = ['user_id', 'data', 'file_extension'];
 
     public function user()
     {
