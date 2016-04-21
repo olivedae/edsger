@@ -17,10 +17,10 @@ class Identicon_Generator
         $golden_ratio_conjugate = 0.618033988749895;
 
         //Use golden-ratio conjugate to help in deciding color hue
-        $h = hexdec($hash[len-6] . $hash[len-5])/255;
+        $h = hexdec($hash[$len-6] . $hash[$len-5])/255;
         $h = fmod($h + $golden_ratio_conjugate, 1.0);
         // Set saturation
-        $s = min(0.85 + (hexdec($hash[len-5] . $hash[len-4]))/255, 1);
+        $s = min(0.85 + (hexdec($hash[$len-5] . $hash[$len-4]))/255, 1);
         // Set value to constant 0.89
         $v = 0.89;
 

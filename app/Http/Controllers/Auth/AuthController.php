@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\UserIcon;
 use App\Classes\Identicon_Generator;
+use DB;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -69,23 +70,84 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
-            'first_name' => $data['firstname'],
-            'last_name' => $data['lastname'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        /*
+         * If you want identicon generation to be guaranteed on
+         * new user registration, you can represent them together as
+         * a transaction.
+         */
 
-        // Now we want to generate a random user icon for this new user
-        $base_64_image = Identicon_Generator::createNewIcon($user->email);
+         $user_id = NULL;
 
-        $UserIcon = UserIcon::create([
-            'user_id' => $user->id,
-            'file_extension' => 'png',
-            'data' => $base_64_image,
-        ]);
+        // Start transaction
+        DB::beginTransaction();
 
-        return $user;
+        try {
+            $new_user = User::create([
+                'first_name' => $data['firstname'],
+                'last_name' => $data['lastname'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
 
+            $user_id = $new_user->id;
+
+        } catch(ValidationException $e)
+        {
+            // Rollback and redirect if there is a failure
+            DB::rollback();
+            return Redirect::to('/register')
+                ->withErrors( $e->getErrors() )
+                ->withInput();
+        } catch(\Exception $e)
+        {
+            DB::rollback();
+            throw $e;
+        }
+
+        try {
+            // Now we want to generate a random user icon for this new user
+            $base_64_image = Identicon_Generator::createNewIcon($data['email']);
+
+            $UserIcon = UserIcon::create([
+                'user_id' => $user_id,
+                'file_extension' => 'png',
+                'data' => $base_64_image,
+            ]);
+        } catch(ValidationException $e)
+        {
+            // Rollback and then redirect again
+            DB::rollback();
+            return Redirect::to('/register')
+                ->withErrors( $e->getErrors() )
+                ->withInput();
+        } catch(\exception $e)
+        {
+            DB::rollback();
+            throw $e;
+        }
+
+        // If we get this far, it's safe to say we can commit the queries
+        DB::commit();
+
+        // $user = User::create([
+        //     'first_name' => $data['firstname'],
+        //     'last_name' => $data['lastname'],
+        //     'email' => $data['email'],
+        //     'password' => bcrypt($data['password']),
+        // ]);
+        //
+        // // Now we want to generate a random user icon for this new user
+        // $base_64_image = Identicon_Generator::createNewIcon($user->email);
+        //
+        // $UserIcon = UserIcon::create([
+        //     'user_id' => $user->id,
+        //     'file_extension' => 'png',
+        //     'data' => $base_64_image,
+        // ]);
+        //
+        // return $user;
+
+    return $new_user;
     }
+
 }
