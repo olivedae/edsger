@@ -24,6 +24,6 @@ Route::post('register', 'Auth\AuthController@postRegister');
 
 
 // Boxes
-Route::get('/boxes', ['as' => 'boxes', 'uses' => 'BoxPermissionController@index']);
-Route::post('/boxes', ['as' => 'create_box', 'uses' => 'BoxPermissionController@ownerStore']);
-Route::delete('/boxes/{box}', 'BoxController@destroy');
+Route::get('/boxes/new', ['as' => 'new_box', 'uses' => 'BoxPermissionController@new']);
+Route::post('/boxes', ['as' => 'create_box', 'uses' => 'BoxPermissionController@store']);
+Route::delete('/boxes/{permission}', 'BoxPermissionController@destroy');

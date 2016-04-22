@@ -14,7 +14,7 @@
                 </li>
                 <li>
                     <label for="new_box_button">
-                        <a id="new_box_button" class="" href="{{ URL::route('boxes') }}">
+                        <a id="new_box_button" class="" href="{{ URL::route('new_box') }}">
                             <img src="img/new_box.png" alt="New box">
                         </a>
                     </label>
@@ -47,6 +47,14 @@
                         <span class="box-shared-with col-md-3">--</span>
                         <a href="#" class="btn btn-edit">Edit</a>
                         <a href="#" class="btn btn-share">Share</a>
+                        <div class="delete-form">
+                            <form action="/boxes/{{ $permission->id }}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                
+                                <button class="btn btn-delete">X</button>
+                            </form>
+                        </div>
                      </li>
                 @endforeach
             </ol>

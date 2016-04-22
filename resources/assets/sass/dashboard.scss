@@ -56,17 +56,16 @@
         list-style-type: none;
       }
       .browse-box {
-        padding: 10px 0 34px;
+        padding: 10px 0 14px;
         border-bottom: 1px solid #B0B0B0;
         a {  
           font-size: 1em;
           color: #595959;
           font-weight: 300;
         }
-        a.btn {
+        a.btn, button.btn {
           display: none;
           padding: 2px 14px;
-          margin-right: 3px;
           color: #2187CC;
           font-size: .95em;
           font-weight: 300;
@@ -76,15 +75,27 @@
           &:hover {
             background: rgb(205, 219, 250);
           }
+          &.btn-delete {
+            color: #F57880;
+            border-color: #F57880;
+            &:hover {
+              background: #FFD9D9;
+            }
+          }
         }
         &:hover {
           background: rgba(205, 219, 250, .4); 
           padding-bottom: 10px;
-          a.btn {
+          a.btn, button.btn {
            display: inline-block;
           }
         }
       }
     }
   }
+}
+
+#dashboard-sidebar .delete-form {
+  display: inline-block;
+  height: 0;
 }

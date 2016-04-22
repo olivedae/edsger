@@ -13,6 +13,7 @@ class CreateBoxPermissionsTable extends Migration
     public function up()
     {
         Schema::create('box_permissions', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('box_id')->unsigned();
             $table->foreign('user_id')

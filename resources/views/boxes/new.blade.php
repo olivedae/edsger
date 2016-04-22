@@ -4,7 +4,7 @@
     @include('common.errors')
 
     <!-- New Box Form -->
-    <form action="/boxes" method="POST" class="form-horizontal">
+    <form action="{{ URL::route('create_box') }}" method="POST" class="form-horizontal">
         {{ csrf_field() }}
 
         <!-- Box name -->

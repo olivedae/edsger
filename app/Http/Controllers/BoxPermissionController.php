@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\BoxPermissionRepository;
 use App\Box;
+use DB;
 
 class BoxPermissionController extends Controller
 {
@@ -37,10 +38,10 @@ class BoxPermissionController extends Controller
      *     is the default for owners making a new
      *     box.
      *
-     * @param User $user Box $box
+     * @param Request $request
      * @return BoxPermission
      */
-    public function ownerStore(Request $request)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|max:255',
@@ -67,16 +68,41 @@ class BoxPermissionController extends Controller
     }
 
      /**
-     * Display a list of all of the user's permissions.
+     * Display a view for creating new boxes
      *
      * @param  Request  $request
      * @return Response
      */
-    public function index(Request $request)
+    public function new(Request $request)
     {
-        return view('boxes.new', [
-            'box_permissions' => $this->permissions->forUser($request->user()),
-        ]);
+        return view('boxes.new');
+    }
+
+    /**
+     * Deletes a boxes permissions and actual self if
+     *     they are the owner
+     *
+     * @param Request $request
+     * @param string $boxID
+     * @return Response
+     */
+    public function destroy(Request $request, string $boxID)
+    {
+        $userID = (string)$request->user()->id;
+                
+        $permission = 
+            BoxPermission::where('box_id', '=', $boxID)
+                          ->where('user_id', '=', $userID)
+                          ->firstOrFail();
+             
+        $this->authorize('destroy', $permission);
+        
+        /*
+         * Delete cascades to Box entry
+         */
+        $permission->delete();
+
+        return redirect('dashboard');
     }
 }
 

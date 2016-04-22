@@ -32,25 +32,4 @@ class BoxController extends Controller
             'name' => $request->name
         ]);
     }
-
-    /**
-     * Display a list of all the user's boxes
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function index(Request $requst)
-    {
-        $permissions = BoxPermission::where('user_id', $request->user()->id)->get();
-
-        $boxes = array();
-
-        foreach ($permissions as $p) {
-            $boxes[] = $p->box();
-        }
-
-        return view('boxes.index', [
-            'boxes' => $boxes,
-        ]);
-    }
 }
