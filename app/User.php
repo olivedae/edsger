@@ -29,4 +29,11 @@ class User extends Authenticatable
         return $this->hasOne(UserIcon::class);
     }
 
+    /**
+     * Get all of the boxes the user has access to
+     */
+    public function boxPermissions()
+    {
+        return $this->hasMany(BoxPermission::class);
+    }
 }

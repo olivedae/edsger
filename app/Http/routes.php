@@ -7,12 +7,7 @@ Route::get('/', ['as' => 'home', 'uses' => function() {
     return view('welcome'); 
 }]);
 
-Route::get('dashboard', ['as' => 'dashboard', 'uses' => function() {
-    if ( Auth::check() ) {
-        return view('dashboard');
-    }
-    return redirect('/');
-}]);
+Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 
 // Authentication routes...
 Route::get('login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
@@ -26,3 +21,9 @@ Route::get('logout', ['as' => 'logout', function() {
 // Registration routes...
 Route::get('register', ['as' => 'register', 'uses' => 'Auth\AuthController@getRegister']); 
 Route::post('register', 'Auth\AuthController@postRegister');
+
+
+// Boxes
+Route::get('/boxes/new', ['as' => 'new_box', 'uses' => 'BoxPermissionController@new']);
+Route::post('/boxes', ['as' => 'create_box', 'uses' => 'BoxPermissionController@store']);
+Route::delete('/boxes/{permission}', 'BoxPermissionController@destroy');

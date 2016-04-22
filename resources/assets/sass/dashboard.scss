@@ -1,0 +1,112 @@
+#dashboard-hero {
+  height: 950px;
+  
+  #dashboard-map {
+    @include set-gutter(0);
+    img {
+      opacity: .7;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  #dashboard-sidebar {
+    @include set-gutter(0);
+    @include box-shadow(-10px, 0, 10px, -10px, #4D4D4D);
+    height: 100%;
+    
+    #browse {
+      margin-top: 100px;
+    }
+
+    .page-header-text {
+      color: #424242;
+      font-size: 1.5em;
+      font-weight: 300;
+    }
+
+    #browse-menu {
+      img {
+	    width: 20px;
+	    height: auto;
+      }
+    }
+
+    .browse-boxes-div {
+        margin-top: 25px;
+        #browse-boxes-header {
+          color: #B0B0B0;
+          border-bottom: 2px solid #C2C2C2;
+          padding-bottom: 7px;
+          font-weight: 300; 
+          div {
+            @include set-gutter(0);
+          }
+        }
+    }
+
+    .boxes-table {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .browse-boxes-div {
+      ol {
+        padding: 0;
+        list-style-type: none;
+      }
+      .browse-box {
+        padding: 10px 0 34px;
+        border-bottom: 1px solid #C2C2C2;
+        a {  
+          font-size: 1em;
+          color: #595959;
+          font-weight: 300;
+        }
+        a.btn, button.btn {
+          display: none;
+          padding: 2px 14px;
+          color: #2187CC;
+          font-size: .95em;
+          font-weight: 300;
+          background: transparent;
+          border: 1px solid #2187CC;
+          border-radius: 2px;
+          &:hover {
+            background: rgb(205, 219, 250);
+          }
+          &.btn-delete {
+            color: #F57880;
+            border-color: #F57880;
+            padding: 2px 10px;
+            &:hover {
+              background: #FFD9D9;
+            }
+          }
+        }
+        &:hover {
+          background: rgba(205, 219, 250, .4); 
+          padding-bottom: 10px;
+          a.btn, button.btn {
+           display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
+
+#dashboard-sidebar .delete-form {
+  display: inline-block;
+  height: 0;
+}
+
+#browse-boxes li.browse-box div.browse-image {
+  padding: 0;
+  margin: 4px -15px 0 5px;
+  img {
+    width: 19px;
+    height: auto;
+    opacity: .4;
+  }
+}

@@ -14,6 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
+        'App\BoxPermission' => 'App\Policies\BoxPermissionPolicy',
     ];
 
     /**
@@ -29,3 +30,4 @@ class AuthServiceProvider extends ServiceProvider
         //
     }
 }
+

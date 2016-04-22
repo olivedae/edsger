@@ -5,10 +5,25 @@
 @section('content')
 
 <section id="dashboard-hero">
-    <div class="container">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div id="dashboard-map" class="col-md-8">
+                <img src="img/poly-map.jpg" alt="Map">
+            </div>
+
+            <div id="dashboard-sidebar" class="col-md-4">
+                <div id="browse">
+                    @include('boxes.index')
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
 
+
+<!--
 <script>
   function initMap() {
     var mapDiv = document.getElementById('map');
@@ -21,5 +36,6 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu_Mf5eXxmzGf7IMIM7m8UGLpaP0fxAck&callback=initMap"
   async defer></script>
+-->
 
 @endsection
