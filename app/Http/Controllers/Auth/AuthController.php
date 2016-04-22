@@ -147,7 +147,8 @@ class AuthController extends Controller
         //
         // return $user;
 
-    return $new_user;
+        return $new_user;
     }
 
 }
+

@@ -31,3 +31,4 @@ class Inspire extends Command
         $this->comment(PHP_EOL.Inspiring::quote().PHP_EOL);
     }
 }
+
