@@ -1,3 +1,4 @@
+<!-- TODO: have it be a popup -->
 <div class="panel-body">
     <!-- Display Validation Errors -->
     @include('common.errors')
@@ -11,7 +12,7 @@
             <label for="box-name" class="col-sm-3 control-label">Box</label>
 
             <div class="col-sm-6">
-                <input type="text" name="name" id="box-name" class="form-control">
+                <input type="text" name="name" id="box-name" class="form-control" placeholder="Name">
             </div>
         </div>  
 

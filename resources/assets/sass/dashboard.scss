@@ -38,9 +38,16 @@
           color: #B0B0B0;
           border-bottom: 2px solid #B0B0B0;
           padding-bottom: 7px;
-          margin-bottom: 15px;  
-          font-weight: 200; 
+          font-weight: 300; 
+          div {
+            @include set-gutter(0);
+          }
         }
+    }
+
+    .boxes-table {
+      padding-left: 0;
+      padding-right: 0;
     }
 
     .browse-boxes-div {
@@ -49,7 +56,34 @@
         list-style-type: none;
       }
       .browse-box {
-
+        padding: 10px 0 34px;
+        border-bottom: 1px solid #B0B0B0;
+        a {  
+          font-size: 1em;
+          color: #595959;
+          font-weight: 300;
+        }
+        a.btn {
+          display: none;
+          padding: 2px 14px;
+          margin-right: 3px;
+          color: #2187CC;
+          font-size: .95em;
+          font-weight: 300;
+          background: transparent;
+          border: 1px solid #2187CC;
+          border-radius: 2px;
+          &:hover {
+            background: rgb(205, 219, 250);
+          }
+        }
+        &:hover {
+          background: rgba(205, 219, 250, .4); 
+          padding-bottom: 10px;
+          a.btn {
+           display: inline-block;
+          }
+        }
       }
     }
   }

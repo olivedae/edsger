@@ -14,7 +14,7 @@
                 </li>
                 <li>
                     <label for="new_box_button">
-                        <a id="new_box_button" class="" href="#">
+                        <a id="new_box_button" class="" href="{{ URL::route('boxes') }}">
                             <img src="img/new_box.png" alt="New box">
                         </a>
                     </label>
@@ -35,16 +35,19 @@
     @if (count($box_permissions) > 0)
         <div id="browse-boxes-header" class="col-md-10 col-md-offset-1">
             <div class="row">
-                <div class="col-md-8">Name</div>
-                <div class="col-md-4 text-right">Shared with</div>
+                <div class="col-md-4">Name</div>
+                <div class="col-md-4">Shared with</div>
             </div>
         </div>
-        <div class="col-md-10 col-md-offset-1">
+        <div class="boxes-table col-md-10 col-md-offset-1">
             <ol id="browse-boxes">
                 @foreach ($box_permissions as $permission)
                     <li class="browse-box">
-                        <a href="#">{{ $permission->unwrap_box()->name }}</a>
-                    </li>
+                        <a href="#" class="box-name col-md-4">{{ $permission->unwrap_box()->name }}</a>
+                        <span class="box-shared-with col-md-3">--</span>
+                        <a href="#" class="btn btn-edit">Edit</a>
+                        <a href="#" class="btn btn-share">Share</a>
+                     </li>
                 @endforeach
             </ol>
         </div>

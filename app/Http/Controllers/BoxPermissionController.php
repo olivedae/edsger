@@ -74,7 +74,7 @@ class BoxPermissionController extends Controller
      */
     public function index(Request $request)
     {
-        return view('boxes.index', [
+        return view('boxes.new', [
             'box_permissions' => $this->permissions->forUser($request->user()),
         ]);
     }
