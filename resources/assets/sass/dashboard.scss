@@ -36,7 +36,7 @@
         margin-top: 25px;
         #browse-boxes-header {
           color: #B0B0B0;
-          border-bottom: 2px solid #B0B0B0;
+          border-bottom: 2px solid #C2C2C2;
           padding-bottom: 7px;
           font-weight: 300; 
           div {
@@ -56,8 +56,8 @@
         list-style-type: none;
       }
       .browse-box {
-        padding: 10px 0 14px;
-        border-bottom: 1px solid #B0B0B0;
+        padding: 10px 0 34px;
+        border-bottom: 1px solid #C2C2C2;
         a {  
           font-size: 1em;
           color: #595959;
@@ -78,6 +78,7 @@
           &.btn-delete {
             color: #F57880;
             border-color: #F57880;
+            padding: 2px 10px;
             &:hover {
               background: #FFD9D9;
             }
@@ -98,4 +99,14 @@
 #dashboard-sidebar .delete-form {
   display: inline-block;
   height: 0;
+}
+
+#browse-boxes li.browse-box div.browse-image {
+  padding: 0;
+  margin: 4px -15px 0 5px;
+  img {
+    width: 19px;
+    height: auto;
+    opacity: .4;
+  }
 }

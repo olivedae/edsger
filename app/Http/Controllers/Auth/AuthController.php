@@ -129,24 +129,6 @@ class AuthController extends Controller
         // If we get this far, it's safe to say we can commit the queries
         DB::commit();
 
-        // $user = User::create([
-        //     'first_name' => $data['firstname'],
-        //     'last_name' => $data['lastname'],
-        //     'email' => $data['email'],
-        //     'password' => bcrypt($data['password']),
-        // ]);
-        //
-        // // Now we want to generate a random user icon for this new user
-        // $base_64_image = Identicon_Generator::createNewIcon($user->email);
-        //
-        // $UserIcon = UserIcon::create([
-        //     'user_id' => $user->id,
-        //     'file_extension' => 'png',
-        //     'data' => $base_64_image,
-        // ]);
-        //
-        // return $user;
-
         return $new_user;
     }
 
