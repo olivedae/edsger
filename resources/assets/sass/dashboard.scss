@@ -1,5 +1,5 @@
 #dashboard-hero {
-  height: 750px;
+  height: 950px;
   
   #dashboard-map {
     @include set-gutter(0);
@@ -11,6 +11,46 @@
   }
 
   #dashboard-sidebar {
+    @include set-gutter(0);
+    @include box-shadow(-10px, 0, 10px, -10px, #4D4D4D);
+    height: 100%;
     
+    #browse {
+      margin-top: 100px;
+    }
+
+    .page-header-text {
+      color: #424242;
+      font-size: 1.5em;
+      font-weight: 300;
+    }
+
+    #browse-menu {
+      img {
+	    width: 20px;
+	    height: auto;
+      }
+    }
+
+    .browse-boxes-div {
+        margin-top: 25px;
+        #browse-boxes-header {
+          color: #B0B0B0;
+          border-bottom: 2px solid #B0B0B0;
+          padding-bottom: 7px;
+          margin-bottom: 15px;  
+          font-weight: 200; 
+        }
+    }
+
+    .browse-boxes-div {
+      ol {
+        padding: 0;
+        list-style-type: none;
+      }
+      .browse-box {
+
+      }
+    }
   }
 }

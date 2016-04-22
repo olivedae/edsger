@@ -8,12 +8,14 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div id="dashboard-map col-md-8">
+            <div id="dashboard-map" class="col-md-8">
                 <img src="img/poly-map.jpg" alt="Map">
             </div>
 
-            <div id="dashboard-sidebar col-md-4">
-                @include('boxes.index')
+            <div id="dashboard-sidebar" class="col-md-4">
+                <div id="browse">
+                    @include('boxes.index')
+                </div>
             </div>
 
         </div>

@@ -1,67 +1,52 @@
-
-<!-- Bootstrap Boilerplate... -->
-
-<div class="panel-body">
-    <!-- Display Validation Errors -->
-    @include('common.errors')
-
-    <!-- New Box Form -->
-    <form action="/boxes" method="POST" class="form-horizontal">
-        {{ csrf_field() }}
-
-        <!-- Box name -->
-        <div class="form-group">
-            <label for="box-name" class="col-sm-3 control-label">Box</label>
-
-            <div class="col-sm-6">
-                <input type="text" name="name" id="box-name" class="form-control">
-            </div>
-        </div>  
-
-        <!-- Add task button -->
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-6">
-                <button type="submit" class="btn btn-default">
-                    <i class="fa fa-plus"></i> Add Box
-                </button>
-            </div>
-        </div>  
-    </form>
+<div id="browse-options">
+    <div class="row">
+        <div class="page-header-text col-md-7 col-md-offset-1">
+            Hooked
+        </div>
+        <div class="browse-menu col-md-4">
+            <ul id="browse-menu" class="list-inline">
+                <li>
+                    <label for="new_route_button">
+                        <a id="new_route_button" class="" href="#">
+                            <img src="img/new_route.png" alt="New route">
+                        </a>
+                    </label>
+                </li>
+                <li>
+                    <label for="new_box_button">
+                        <a id="new_box_button" class="" href="#">
+                            <img src="img/new_box.png" alt="New box">
+                        </a>
+                    </label>
+                </li>
+                <li>
+                    <label for="share_box_button">
+                        <a id="share_box_button" class="" href="#">
+                            <img src="img/share_box.png" alt="Share box">
+                        </a>
+                    </label>
+                </li>
+            </ul>
+        </div> <!-- End of Browse menu div -->
+    </div>
 </div>
 
-<!-- TODO: Boxes -->
-
-@if (count($box_permissions) > 0)
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Boxes
+<div class="browse-boxes-div row">
+    @if (count($box_permissions) > 0)
+        <div id="browse-boxes-header" class="col-md-10 col-md-offset-1">
+            <div class="row">
+                <div class="col-md-8">Name</div>
+                <div class="col-md-4 text-right">Shared with</div>
+            </div>
         </div>
-
-        <div class="panel-body">
-            <table class="table table-striped task-table">
-
-                <!-- Table Headings -->
-                <thead>
-                    <th>Box</th>
-                    <th>&nbsp;</th>
-                </thead>
-
-                <!-- Table Body -->
-                <tbody>
-                    @foreach ($box_permissions as $p)
-                        <tr>
-                            <!-- Task Name -->
-                            <td class="table-text">
-                                <div>{{ $p->unwrap_box()->name }}</div>
-                            </td>
-
-                            <td>
-                                <!-- TODO: Delete Button -->
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <div class="col-md-10 col-md-offset-1">
+            <ol id="browse-boxes">
+                @foreach ($box_permissions as $permission)
+                    <li class="browse-box">
+                        <a href="#">{{ $permission->unwrap_box()->name }}</a>
+                    </li>
+                @endforeach
+            </ol>
         </div>
-    </div>
-@endif
+    @endif
+</div>
