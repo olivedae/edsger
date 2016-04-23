@@ -19,7 +19,7 @@
                     <!--<a class="navbar-brand" href="{{ URL::route('home') }}">
                         <img alt="Hooked" src="img/logo.png">
                     </a>-->
-                    <a class="navbar-brand" href="{{ URL::route('home') }}">Hooked</a>
+                    <a class="navbar-brand" href="{{ URL::route('home') }}">Hooked <b>Beta</b></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
