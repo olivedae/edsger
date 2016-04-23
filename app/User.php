@@ -36,4 +36,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(BoxPermission::class);
     }
+
+    /**
+     * Get all the boxes this user has shared
+     */
+    public function sharesSent()
+    {
+        return $this->hasMany(BoxShare::class);
+    }
+
+    /**
+     * Get all the boxes that was shared with this user
+     */
+    public function sharesReceived()
+    {
+        return $this->hasMany(BoxShare::class);
+    }       
 }

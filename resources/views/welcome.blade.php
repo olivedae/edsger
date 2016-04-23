@@ -23,12 +23,12 @@
 
                 <div id="welcome-register-form" class="col-md-10 col-md-offset-1">
                     @include('auth.forms.welcome-register')
-                </div> 
+                </div>
 
             </div> <!-- End of sidebar div -->
 
         </div> <!-- End of row div -->
-    </div> <!-- End of container div -->      
+    </div> <!-- End of container div -->
 </section> <!-- End of welcome-hero section -->
 
 <section id="welcome-info">

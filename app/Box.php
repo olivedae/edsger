@@ -20,4 +20,12 @@ class Box extends Model
     {
         return $this->hasMany(BoxPermission::class);
     }
+
+    /**
+     * Get the shares for this box.
+     */
+    public function shares()
+    {
+        return $this->hasMany(BoxShare::class);
+    }
 }

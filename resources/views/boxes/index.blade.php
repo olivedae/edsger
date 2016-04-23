@@ -53,12 +53,12 @@
                             <span class="box-shared-with">--</span>
                         </div>
                         <div class="">
-                            <a href="#" class="btn btn-share">Share</a>
+                            <a href="/share/boxes/{{ $permission->id }}" class="btn btn-share">Share</a>
                             <div class="delete-form">
                                 <form action="/boxes/{{ $permission->id }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                
+
                                     <button class="btn btn-delete">X</button>
                                 </form>
                             </div>

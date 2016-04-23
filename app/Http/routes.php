@@ -1,10 +1,10 @@
 <?php
 
-Route::get('/', ['as' => 'home', 'uses' => function() { 
+Route::get('/', ['as' => 'home', 'uses' => function() {
     if ( Auth::check() ) {
         return redirect('/dashboard');
     }
-    return view('welcome'); 
+    return view('welcome');
 }]);
 
 Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
@@ -19,7 +19,7 @@ Route::get('logout', ['as' => 'logout', function() {
 
 
 // Registration routes...
-Route::get('register', ['as' => 'register', 'uses' => 'Auth\AuthController@getRegister']); 
+Route::get('register', ['as' => 'register', 'uses' => 'Auth\AuthController@getRegister']);
 Route::post('register', 'Auth\AuthController@postRegister');
 
 
@@ -27,3 +27,8 @@ Route::post('register', 'Auth\AuthController@postRegister');
 Route::get('/boxes/new', ['as' => 'new_box', 'uses' => 'BoxPermissionController@new']);
 Route::post('/boxes', ['as' => 'create_box', 'uses' => 'BoxPermissionController@store']);
 Route::delete('/boxes/{permission}', 'BoxPermissionController@destroy');
+
+// Box Shares
+Route::get('/share/boxes/{permission}', ['as' => 'new_box_share', 'uses' => 'BoxShareController@new']);
+Route::post('/share/boxes/{permission}', ['as' => 'create_box_share', 'uses' => 'BoxShareController@store']);
+Route::delete('/share/boxes/{share}', 'BoxShareController@destroy');
