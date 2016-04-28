@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\BoxPermission;
 use Illuminate\Database\Eloquent\Model;
 
 class Box extends Model

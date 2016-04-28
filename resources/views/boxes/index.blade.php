@@ -44,13 +44,26 @@
                 @foreach ($box_permissions as $permission)
                     <li class="browse-box">
                         <div class="col-md-1 browse-image">
-                            <img src="img/box.png" alt="Box">
+                            <!--<img src="img/box.png" alt="Box">-->
+                            @if ($permission->is_owner)
+                                <div class="box-type-icon owner-box-icon"></div>
+                            @else
+                                <div class="box-type-icon shared-box-icon"></div>
+                            @endif
                         </div>
                         <div class="col-md-4">
                              <a href="#" class="box-name">{{ $permission->unwrap_box()->name }}</a>
                         </div>
                         <div class="col-md-4">
-                            <span class="box-shared-with">--</span>
+                            @if ( count($permission->unwrap_shares()) > 0)
+                                <div class="box-shared-with">
+                                @foreach ($permission->unwrap_shares() as $share)
+                                    <img src={{ $share->unwrap_user()->icon->data }}>
+                                @endforeach
+                                </div>
+                            @else
+                                <span class="box-shared-with">--</span>
+                            @endif
                         </div>
                         <div class="">
                             <a href="/share/boxes/{{ $permission->id }}" class="btn btn-share">Share</a>

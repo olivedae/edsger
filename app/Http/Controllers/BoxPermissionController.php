@@ -75,8 +75,9 @@ class BoxPermissionController extends Controller
     }
 
     /**
-     * Deletes a boxes permissions and actual self if
-     *     they are the owner
+     * Deletes an entry in box_permissions.
+     *     In addition, deletes the actual
+     *     box if the user is the owner.
      *
      * @param Request $request
      * @param BoxPermission $permission
@@ -87,9 +88,19 @@ class BoxPermissionController extends Controller
         $this->authorize('destroy', $permission);
 
         /*
-         * Delete cascades to Box entry
+         * Delete the instance of BoxPermission
          */
         $permission->delete();
+
+        /*
+         * If they're the owner of hte box,
+         *     delete that box also which
+         *     cascades for entries in
+         *     box_permissions.
+         */
+        if ($permission->is_owner) {
+            Box::destroy($permission->box_id);
+        }
 
         return redirect('dashboard');
     }

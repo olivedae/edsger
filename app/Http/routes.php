@@ -30,7 +30,7 @@ Route::get('logout',
     [
         'as' => 'logout', function() {
             Auth::logout();
-            return Redirect::route('home');
+            return Redirect::route('login');
         }
     ]
 );
