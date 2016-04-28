@@ -29,8 +29,8 @@ class BoxShareController extends Controller
      * @return Response
      */
     public function new(Request $request, BoxPermission $permission)
-    {        
-        $this->authorize('new', $permission);
+    {
+        $this->authorize('shareable', $permission);
 
         return view('shares.boxes.new', [
             'permission' => $permission
@@ -55,15 +55,17 @@ class BoxShareController extends Controller
             User::where('email', '=', $request->email)
                  ->firstOrFail();
 
-        $this->authorize('store', $permission);
+        $this->authorize('shareable', $permission);
 
         // Creates a new BoxPermission
+
+        $canEdit = $request->edit ? true : false;
 
         $new_permission = BoxPermission::create([
             'user_id' => $user->id,
             'box_id' => $permission->box_id,
             'is_owner' => false,
-            'can_edit' => $request->edit,
+            'can_edit' => $canEdit,
         ]);
 
         // Creates an instance of BoxShare

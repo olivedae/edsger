@@ -22,4 +22,9 @@ class BoxPermissionPolicy
         $has_permission = $user->id === $permission->user_id;
         return $has_permission && $permission->is_owner;
     }
+
+    public function shareable(User $user, BoxPermission $permission)
+    {
+        return $user->id === $permission->user_id;
+    }
 }
