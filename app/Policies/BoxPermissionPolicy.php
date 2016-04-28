@@ -11,16 +11,6 @@ class BoxPermissionPolicy
     use HandlesAuthorization;
 
     /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
      * Determine if the given user can delete the given task.
      *
      * @param  User  $user
@@ -29,7 +19,19 @@ class BoxPermissionPolicy
      */
     public function destroy(User $user, BoxPermission $permission)
     {
-        $has_permission = $user->id === $permission->user_id;
-        return $has_permission && $permission->is_owner;
+        return $user->id === $permission->user_id;
+    }
+
+    /**
+     * Determine if the given user can share a
+     *     given box.
+     *
+     * @param  User  $user
+     * @param  BoxPermission $permission
+     * @return bool
+     */
+    public function shareable(User $user, BoxPermission $permission)
+    {
+        return $user->id === $permission->user_id;
     }
 }

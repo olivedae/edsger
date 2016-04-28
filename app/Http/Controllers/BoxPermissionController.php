@@ -46,22 +46,18 @@ class BoxPermissionController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
         ]);
-        
+
         $box = Box::create([
             'name' => $request->name
         ]);
 
         $user = $request->user();
-        
+
         $permission = BoxPermission::create([
             'user_id' => $user->id,
             'box_id' => $box->id,
             'is_owner' => true,
-            'can_edit_contents' => true,
-            'can_share' => true,
-            'can_revoke_shares' => true,
-            'can_edit_box_settings' => true,
-            'can_edit_contents_settings' => true
+            'can_edit' => true,
         ]);
 
         return redirect('dashboard');
@@ -79,30 +75,33 @@ class BoxPermissionController extends Controller
     }
 
     /**
-     * Deletes a boxes permissions and actual self if
-     *     they are the owner
+     * Deletes an entry in box_permissions.
+     *     In addition, deletes the actual
+     *     box if the user is the owner.
      *
      * @param Request $request
-     * @param string $boxID
+     * @param BoxPermission $permission
      * @return Response
      */
-    public function destroy(Request $request, string $boxID)
+    public function destroy(Request $request, BoxPermission $permission)
     {
-        $userID = (string)$request->user()->id;
-                
-        $permission = 
-            BoxPermission::where('box_id', '=', $boxID)
-                          ->where('user_id', '=', $userID)
-                          ->firstOrFail();
-             
         $this->authorize('destroy', $permission);
-        
+
         /*
-         * Delete cascades to Box entry
+         * Delete the instance of BoxPermission
          */
         $permission->delete();
+
+        /*
+         * If they're the owner of hte box,
+         *     delete that box also which
+         *     cascades for entries in
+         *     box_permissions.
+         */
+        if ($permission->is_owner) {
+            Box::destroy($permission->box_id);
+        }
 
         return redirect('dashboard');
     }
 }
-

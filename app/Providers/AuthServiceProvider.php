@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\BoxShare;
+use App\Policies\BoxSharePolicy;
+
+use App\BoxPermission;
+use App\Policies\BoxPermissionPolicy;
+
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -13,8 +19,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
-        'App\BoxPermission' => 'App\Policies\BoxPermissionPolicy',
+        BoxPermission::class => BoxPermissionPolicy::class,
+        BoxShare::class => BoxSharePolicy::class,
     ];
 
     /**
@@ -30,4 +36,3 @@ class AuthServiceProvider extends ServiceProvider
         //
     }
 }
-

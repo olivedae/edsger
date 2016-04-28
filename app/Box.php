@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\BoxPermission;
 use Illuminate\Database\Eloquent\Model;
 
 class Box extends Model
@@ -19,5 +20,13 @@ class Box extends Model
     public function permissions()
     {
         return $this->hasMany(BoxPermission::class);
+    }
+
+    /**
+     * Get the shares for this box.
+     */
+    public function shares()
+    {
+        return $this->hasMany(BoxShare::class);
     }
 }
