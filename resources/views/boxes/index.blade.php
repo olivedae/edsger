@@ -1,7 +1,7 @@
 <div id="browse-options">
     <div class="row">
         <div class="page-header-text col-md-7 col-md-offset-1">
-            Hooked
+            Edsger
         </div>
         <div class="browse-menu col-md-4">
             <ul id="browse-menu" class="list-inline">

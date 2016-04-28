@@ -1,5 +1,5 @@
 <head>
-    <title>@yield('title') - Hooked</title>
+    <title>@yield('title') - Edsger</title>
     <link rel="stylesheet" href="{{ url('/') }}./css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="{{ url('/') }}./css/bootstrap-theme.min.css" type="text/css"/>
     <link rel="stylesheet" href="{{ url('/') }}./css/app.css" type="text/css"/>
@@ -19,7 +19,7 @@
                     <!--<a class="navbar-brand" href="{{ URL::route('home') }}">
                         <img alt="Hooked" src="img/logo.png">
                     </a>-->
-                    <a class="navbar-brand" href="{{ URL::route('home') }}">Hooked <b>Beta</b></a>
+                    <a class="navbar-brand" href="{{ URL::route('home') }}">Edsger <b>Beta</b></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -28,11 +28,11 @@
                             <li><a href="{{ URL::route('login') }}">Sign in</a>
                         @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" 
-                                            data-toggle="dropdown" 
-                                            role="button" 
+                                <a href="#" class="dropdown-toggle"
+                                            data-toggle="dropdown"
+                                            role="button"
                                             aria-expanded="false">
-                                            <img class="header-user-icon" height='23px' width='23px' src= {{ Auth::user()->icon->data }}> 
+                                            <img class="header-user-icon" height='23px' width='23px' src= {{ Auth::user()->icon->data }}>
                                             {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}
                                             <span class="caret"></span></a>                       </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider" role="menu">

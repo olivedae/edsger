@@ -8,7 +8,7 @@
 
 <form method="post" action="/register">
     {!! csrf_field() !!}
-  
+
     <div class="row form-group">
         <div class="col-xs-6">
             <input type="text" name="firstname" class="form-control" placeholder="First name">
@@ -30,15 +30,14 @@
             <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm password">
         </div>
     </div> <!-- Enf of password div -->
-
+    <!--
     <div class="checkbox">
         <label class="control-label">
             <input type="checkbox" name="terms"> I agree to <a href="#">Hooked terms</a>
         </label>
-    </div> <!-- End of Hooked terms div -->
-    
+    </div>
+    -->
     <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block">Sign up for free</button>
     </div>
 </form> <!-- End of registration form -->
-

@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="info/logo.jpg" height="55%" width="55%">
+    <img src="info/banner.png" height="auto" width="45%">
 </p>
 <p align="center" style="margin-bottom:50px;">
     <i>A route for the places you'll go</i>
@@ -21,18 +21,18 @@
 
 ```
 # Getting Laravel up and going
-user:hooked composer install
-user:hooked php artisan migrate
+user:edsger composer install
+user:edsger php artisan migrate
 
-# Setting up your local environement for
+# Setting up your local environment for
 #   Homestead/Vagrant:
 
 # For Mac/Linux:
-user:hooked php vendor/bin/homestead make
+user:edsger php vendor/bin/homestead make
 # Otherwise Windows
-user:hooked vendor\bin\homestead make
+user:edsger vendor\bin\homestead make
 
-user:hooked vagrant up 
+user:edsger vagrant up
 ```
 
 Vagrant will launch and boot a virtual machine and automatically configure it for you.
@@ -46,10 +46,8 @@ Homestead requires the "domains" for Nginx sites to be added to the `host` file 
 192.168.10.10 homestead.app
 ```
 
-Make sure the IP address listed is the one set in your `location/to/hooked/Homestead.yaml` file. Once you have added the domain to your `hosts` file, you can access the site via your web browser:
+Make sure the IP address listed is the one set in your `location/to/edsger/Homestead.yaml` file. Once you have added the domain to your `hosts` file, you can access the site via your web browser:
 
 ```
 http://homestead.app
 ```
-
-
