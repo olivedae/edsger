@@ -29,14 +29,22 @@ class BoxShareController extends Controller
      * @return Response
      */
     public function new(Request $request, BoxPermission $permission)
-    {
-        $this->authorize('store', $permission);
+    {        
+        $this->authorize('new', $permission);
 
         return view('shares.boxes.new', [
             'permission' => $permission
         ]);
     }
 
+    /**
+     * Create a new entry for box_shares which in addition
+     *     creates a new entry in box_permissions
+     *
+     * @param Request $request
+     * @param BoxPermission $permission
+     * @return BoxPermission
+     */
     public function store(Request $request, BoxPermission $permission)
     {
         $this->validate($request, [
@@ -55,11 +63,7 @@ class BoxShareController extends Controller
             'user_id' => $user->id,
             'box_id' => $permission->box_id,
             'is_owner' => false,
-            'can_edit_contents' => $request->edit,
-            'can_share' => true,
-            'can_revoke_shares' => true,
-            'can_edit_box_settings' => false,
-            'can_edit_contents_settings' => false
+            'can_edit' => $request->edit,
         ]);
 
         // Creates an instance of BoxShare

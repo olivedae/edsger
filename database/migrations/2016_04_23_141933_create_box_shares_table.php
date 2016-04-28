@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatesBoxSharesTable extends Migration
+class CreateBoxSharesTable extends Migration
 {
     /**
      * Run the migrations.

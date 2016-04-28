@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Box;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class BoxShare extends Model
@@ -26,7 +28,7 @@ class BoxShare extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+
     /**
      * Get the user who the Box was shared with.
      */

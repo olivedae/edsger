@@ -46,22 +46,18 @@ class BoxPermissionController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
         ]);
-        
+
         $box = Box::create([
             'name' => $request->name
         ]);
 
         $user = $request->user();
-        
+
         $permission = BoxPermission::create([
             'user_id' => $user->id,
             'box_id' => $box->id,
             'is_owner' => true,
-            'can_edit_contents' => true,
-            'can_share' => true,
-            'can_revoke_shares' => true,
-            'can_edit_box_settings' => true,
-            'can_edit_contents_settings' => true
+            'can_edit' => true,
         ]);
 
         return redirect('dashboard');
@@ -83,20 +79,13 @@ class BoxPermissionController extends Controller
      *     they are the owner
      *
      * @param Request $request
-     * @param string $boxID
+     * @param BoxPermission $permission
      * @return Response
      */
-    public function destroy(Request $request, string $boxID)
+    public function destroy(Request $request, BoxPermission $permission)
     {
-        $userID = (string)$request->user()->id;
-                
-        $permission = 
-            BoxPermission::where('box_id', '=', $boxID)
-                          ->where('user_id', '=', $userID)
-                          ->firstOrFail();
-             
         $this->authorize('destroy', $permission);
-        
+
         /*
          * Delete cascades to Box entry
          */
@@ -105,4 +94,3 @@ class BoxPermissionController extends Controller
         return redirect('dashboard');
     }
 }
-

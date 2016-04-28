@@ -15,18 +15,14 @@ class BoxPermission extends Model
     protected $fillable = [
         'user_id',
         'box_id',
-        'is_owner', 
-        'can_edit_contents', 
-        'can_share', 
-        'can_revoke_shares', 
-        'can_edit_box_settings', 
-        'can_edit_contents_settings'
+        'is_owner',
+        'can_edit',
     ];
 
     /**
      * Get owner of the box
      */
-    public function user_access() 
+    public function user_access()
     {
         return $this->belongsTo(User::class);
     }
@@ -39,6 +35,11 @@ class BoxPermission extends Model
         return $this->belongsTo(Box::class);
     }
 
+    /**
+     * Convenience method for grabbing a model
+     *     instance of Box which the permission
+     *     is for.
+     */
     public function unwrap_box()
     {
         return Box::where('id', $this->box_id)->get()[0];

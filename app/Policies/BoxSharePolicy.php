@@ -6,20 +6,21 @@ use App\User;
 use App\BoxPermission;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class BoxPermissionPolicy
+class BoxSharePolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine if the given user can delete the given task.
+     * Determine if the given user can share a
+     *     given box.
      *
      * @param  User  $user
      * @param  BoxPermission $permission
      * @return bool
      */
-    public function destroy(User $user, BoxPermission $permission)
+    public function new(User $user, BoxPermission $permission)
     {
-        $has_permission = $user->id === $permission->user_id;
-        return $has_permission && $permission->is_owner;
+        //return $user->id === $permission->user_id;
+        return true;
     }
 }

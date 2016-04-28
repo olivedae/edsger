@@ -23,11 +23,7 @@ class CreateBoxPermissionsTable extends Migration
                   ->references('id')->on('boxes')
                   ->onDelete('cascade');
             $table->boolean('is_owner');
-            $table->boolean('can_edit_contents');
-            $table->boolean('can_share');
-            $table->boolean('can_revoke_shares');
-            $table->boolean('can_edit_box_settings');
-            $table->boolean('can_edit_contents_settings');
+            $table->boolean('can_edit');
             $table->timestamps();
         });
     }
@@ -42,4 +38,3 @@ class CreateBoxPermissionsTable extends Migration
         Schema::drop('box_permissions');
     }
 }
-
