@@ -62,13 +62,14 @@ class BoxPermission extends Model
     /**
      * Convenience method for gather the users
      *     that this box has been shared with.
+     *     Excludes itself.
      *
      * @return BoxPermission[]
      */
      public function unwrap_shares()
      {
          return BoxPermission::where('box_id', $this->box_id)
-                             ->where('is_owner', false)
+                             ->where('id', '!=', $this->id)
                              ->get();
      }
 }
