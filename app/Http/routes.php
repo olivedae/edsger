@@ -35,6 +35,17 @@ Route::get('logout',
     ]
 );
 
+// Profile routes...
+Route::get('profile',
+    [
+        'as' => 'profile', function() {
+            if ( Auth::check() ) {
+                return view('profile');
+            }
+            return view('welcome');
+        }
+    ]
+);
 
 // Registration routes...
 Route::get('register',

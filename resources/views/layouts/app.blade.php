@@ -40,7 +40,7 @@
 
                                     <li role="separator" class="divider"></li>
 
-                                    <li><a href="#">Your profile</a></li>
+                                    <li><a href="{{ URL::route('profile') }}">Your profile</a></li>
                                     <li><a href="#">Your stars</a></li>
                                     <li><a href="#">Integrations</a></li>
                                     <li><a hef="#">Help</a></li>
