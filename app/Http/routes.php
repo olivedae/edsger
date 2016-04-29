@@ -35,8 +35,9 @@ Route::get('logout',
     ]
 );
 
-
-// Registration routes...
+/**
+ * Registration routes
+ */
 Route::get('register',
     [
         'as' => 'register',
@@ -46,7 +47,9 @@ Route::get('register',
 Route::post('register', 'Auth\AuthController@postRegister');
 
 
-// Boxes
+/**
+ * Boxes
+ */
 Route::get('/boxes/new',
     [
         'as' => 'new_box',
@@ -61,7 +64,9 @@ Route::post('/boxes',
 );
 Route::delete('/boxes/{boxpermission}', 'BoxPermissionController@destroy');
 
-// Box Shares
+/**
+ * Box shares
+ */
 Route::get('/share/boxes/{boxpermission}',
     [
         'as' => 'new_box_share',
@@ -75,3 +80,31 @@ Route::post('/share/boxes/{boxpermission}',
     ]
 );
 Route::delete('/share/boxes/{share}', 'BoxShareController@destroy');
+
+/**
+ * Routes
+ */
+Route::get('/routes/new',
+    [
+        'as' => 'new_route',
+        'uses' => 'RouteController@new'
+    ]
+);
+Route::get('/routes',
+    [
+        'as' => 'routes',
+        'uses' => 'RouteController@index'
+    ]
+);
+Route::post('/routes',
+    [
+        'as' => 'create_route',
+        'uses' => 'RouteController@store'
+    ]
+);
+Route::delete('/routes/{route}'.
+    [
+        'as' => 'delete_route',
+        'uses' => 'RouteController@destroy'
+    ]
+);

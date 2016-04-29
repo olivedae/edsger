@@ -7,7 +7,7 @@
             <ul id="browse-menu" class="list-inline">
                 <li>
                     <label for="new_route_button">
-                        <a id="new_route_button" href="#">
+                        <a id="new_route_button" href="{{ URL::route('new_route') }}">
                             <img src="img/new_route.png" alt="New route">
                         </a>
                     </label>
