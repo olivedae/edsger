@@ -25,7 +25,7 @@
     <!-- Add task button -->
     <div class="form-group">
         <button type="submit" class="btn btn-primary">
-            <i class="fa fa-plus"></i> Share Box
+            <i class="fa fa-plus"></i>Share Box
         </button>
     </div>
 </form>

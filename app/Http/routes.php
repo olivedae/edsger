@@ -67,6 +67,12 @@ Route::delete('/boxes/{boxpermission}', 'BoxPermissionController@destroy');
 /**
  * Box shares
  */
+Route::get('/share/boxes',
+    [
+        'as' => 'box_shares',
+        'uses' => 'RouteShareController@index',
+    ]
+);
 Route::get('/share/boxes/{boxpermission}',
     [
         'as' => 'new_box_share',
@@ -79,7 +85,7 @@ Route::post('/share/boxes/{boxpermission}',
         'uses' => 'BoxShareController@store'
     ]
 );
-Route::delete('/share/boxes/{share}', 'BoxShareController@destroy');
+Route::delete('/share/boxes/{boxshare}', 'BoxShareController@destroy');
 
 /**
  * Routes
@@ -108,3 +114,26 @@ Route::delete('/routes/{route}'.
         'uses' => 'RouteController@destroy'
     ]
 );
+
+/**
+ * Route shares
+ */
+Route::get('/shares/routes',
+    [
+        'as' => 'route_shares',
+        'uses' => 'RouteShareController@index',
+    ]
+);
+Route::get('/share/routes/{routepermission}',
+    [
+        'as' => 'new_route_share',
+        'uses' => 'RouteShareController@new'
+    ]
+);
+Route::post('/share/routes/{routepermission}',
+    [
+        'as' => 'create_route_share',
+        'uses' => 'RouteShareController@store'
+    ]
+);
+Route::delete('/share/routes/{routeshare}', 'RouteShareController@destroy');
