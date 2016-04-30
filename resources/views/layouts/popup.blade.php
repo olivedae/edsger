@@ -7,15 +7,21 @@
 <body>
 
     <div class="popup-bg"></div>
+    <div class="popup-bg-image"></div>
 
     <section class="container popup-container">
         <div class="row">
-            <div class="popup col-md-8 col-md-offset-2">
+            <div class="popup col-md-6 col-md-offset-3">
                 <div class="popup-header">
-                    <h2>@yield('header')</h2>
+                    <div class="popup-header-inner">
+                        <h2>@yield('header')</h2>
+                        <a href="{{ URL::route('dashboard') }}">x</a>
+                    </div>
                 </div>
                 <div class="popup-body">
-                    @yield('content')
+                    <div class="popup-body-inner">
+                        @yield('content')
+                    </div>
                 </div>
             </div>
         </div>

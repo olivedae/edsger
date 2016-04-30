@@ -1,28 +1,34 @@
-<!-- TODO: have it be a popup -->
-<div class="panel-body">
-    <!-- Display Validation Errors -->
-    @include('common.errors')
+@extends('layouts.popup')
+@section('title', 'Boxes')
+@section('header', 'Create a new box')
 
-    <!-- New Box Form -->
-    <form action="{{ URL::route('create_box') }}" method="POST" class="form-horizontal">
-        {{ csrf_field() }}
+@section('content')
 
-        <!-- Box name -->
-        <div class="form-group">
-            <label for="box-name" class="col-sm-3 control-label">Box</label>
+<!-- Display Validation Errors -->
+@include('common.errors')
 
-            <div class="col-sm-6">
-                <input type="text" name="name" id="box-name" class="form-control" placeholder="Name">
-            </div>
+<!-- New Route Form -->
+<form action="{{ URL::route('create_box') }}" method="POST" class="form-horizontal">
+    {{ csrf_field() }}
+
+    <div class="row form-group">
+        <div class="col-md-6">
+            <input type="text" name="name" id="name" class="form-control" placeholder="Name">
         </div>
+    </div>
 
-        <!-- Add task button -->
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-6">
-                <button type="submit" class="btn btn-default">
-                    <i class="fa fa-plus"></i> Add Box
-                </button>
-            </div>
+    <div class="row form-group">
+        <div class="col-md-10">
+            <input type="text" name="description" class="form-control input-small" placeholder="Description (optional)">
         </div>
-    </form>
-</div>
+    </div>
+
+    <!-- Add task button -->
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-plus"></i>Add box
+        </button>
+    </div>
+</form>
+
+@endsection
