@@ -25,6 +25,9 @@ class RouteServiceProvider extends ServiceProvider
     public function boot(Router $router)
     {
         $router->model('boxpermission', 'App\BoxPermission');
+        $router->model('routepermission', 'App\RoutePermission');
+        $router->model('route', 'App\Route');
+        $router->model('box', 'App\Box');
         parent::boot($router);
     }
 

@@ -46,7 +46,6 @@ Route::get('register',
 );
 Route::post('register', 'Auth\AuthController@postRegister');
 
-
 /**
  * Boxes
  */
@@ -108,7 +107,7 @@ Route::post('/routes',
         'uses' => 'RouteController@store'
     ]
 );
-Route::delete('/routes/{route}'.
+Route::delete('/routes/{route}',
     [
         'as' => 'delete_route',
         'uses' => 'RouteController@destroy'
@@ -121,7 +120,7 @@ Route::delete('/routes/{route}'.
 Route::get('/shares/routes',
     [
         'as' => 'route_shares',
-        'uses' => 'RouteShareController@index',
+        'uses' => 'RouteShareController@index'
     ]
 );
 Route::get('/share/routes/{routepermission}',
