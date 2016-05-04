@@ -23,7 +23,7 @@ class RoutePolicy
     {
         $permissions =
             RoutePermission::where('user_id', $user->id)
-                            ->where('route_id', $route_id)
+                            ->where('route_id', $route->id)
                             ->get();
 
         if (count($permissions) != 1) {
