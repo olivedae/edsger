@@ -40,7 +40,7 @@ class User extends Authenticatable
     /**
      * Get all the boxes this user has shared
      */
-    public function sharesSent()
+    public function boxSharesSent()
     {
         return $this->hasMany(BoxShare::class);
     }
@@ -48,8 +48,24 @@ class User extends Authenticatable
     /**
      * Get all the boxes that was shared with this user
      */
-    public function sharesReceived()
+    public function boxSharesReceived()
     {
         return $this->hasMany(BoxShare::class);
-    }       
+    }
+
+    /**
+     * Get all the routes that this user shared
+     */
+    public function routeSharesSent()
+    {
+        return $this->hasMany(RouteShare::class);
+    }
+
+    /**
+     * Get all the routes that was shared with this user
+     */
+    public function routeSharesReceived()
+    {
+        return $this->hasMany(RouteShare::class);
+    }
 }

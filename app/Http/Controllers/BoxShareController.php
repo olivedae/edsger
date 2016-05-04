@@ -41,6 +41,9 @@ class BoxShareController extends Controller
      * Create a new entry for box_shares which in addition
      *     creates a new entry in box_permissions
      *
+     * TODO: have all routes in the shared box also
+     *     be shared
+     *
      * @param Request $request
      * @param BoxPermission $permission
      * @return BoxPermission
@@ -79,5 +82,24 @@ class BoxShareController extends Controller
         ]);
 
         return redirect('dashboard');
+    }
+
+    /**
+     * Displays a view of all the users a certain
+     *     box has been shared with
+     */
+    public function index(Request $request, Box $box)
+    {
+
+    }
+
+    /**
+     * Deletes a given share
+     *
+     * TODO
+     */
+    public function destroy(Request $request, BoxShare $share)
+    {
+
     }
 }

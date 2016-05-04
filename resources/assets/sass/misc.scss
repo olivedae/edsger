@@ -3,3 +3,15 @@ div.alert.alert-danger {
   background: #FFD9D9;
   color: #F57880;
 }
+
+ul.list-group.alert.alert-danger {
+  background: #FFD9D9;
+  border: none;
+  color: #F57880;
+
+  .list-group-item {
+    background: #FFD9D9;
+    border: none;
+    color: #F57880;
+  }
+}

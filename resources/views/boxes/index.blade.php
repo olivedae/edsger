@@ -7,8 +7,8 @@
             <ul id="browse-menu" class="list-inline">
                 <li>
                     <label for="new_route_button">
-                        <a id="new_route_button" href="#">
-                            <img src="img/new_route.png" alt="New route">
+                        <a id="new_route_button" href="{{ URL::route('new_route') }}">
+                            <img src="img/new_route.ico" alt="New route">
                         </a>
                     </label>
                 </li>
@@ -22,7 +22,7 @@
                 <li>
                     <label for="share_box_button">
                         <a id="share_box_button" href="#">
-                            <img src="img/share_box.png" alt="Share box">
+                            <img src="img/share.png" alt="Share box">
                         </a>
                     </label>
                 </li>
@@ -32,7 +32,7 @@
 </div>
 
 <div class="browse-boxes-div row">
-    @if (count($box_permissions) > 0)
+    @if (count($boxes) > 0)
         <div id="browse-boxes-header" class="col-md-10 col-md-offset-1">
             <div class="row">
                 <div class="col-md-5">Name</div>
@@ -41,7 +41,7 @@
         </div>
         <div class="boxes-table col-md-10 col-md-offset-1">
             <ol id="browse-boxes">
-                @foreach ($box_permissions as $permission)
+                @foreach ($boxes as $permission)
                     <li class="browse-box">
                         <div class="col-md-1 browse-image">
                             <!--<img src="img/box.png" alt="Box">-->

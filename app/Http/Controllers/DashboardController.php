@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\BoxPermissionRepository;
-
+use App\Repositories\RoutePermissionRepository;
 
 class DashboardController extends Controller
 {
@@ -15,7 +15,7 @@ class DashboardController extends Controller
      *
      * @var BoxPermissionRepository
      */
-    protected $permissions;
+    protected $boxes, $routes;
 
     /**
      * Create a new controller instance.
@@ -23,13 +23,13 @@ class DashboardController extends Controller
      * @param  BoxPermissionRepository  $permissions
      * @return void
      */
-    public function __construct(BoxPermissionRepository $permissions)
+    public function __construct(BoxPermissionRepository $boxes, RoutePermissionRepository $routes)
     {
         $this->middleware('auth');
-        $this->permissions = $permissions;
+        $this->boxes = $boxes;
+        $this->routes = $routes;
     }
 
-    
     /**
      * Display a list of all of the user's permissions.
      *
@@ -39,8 +39,16 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
+
+        $boxes =
+            $this->boxes->forUser($user);
+
+        $routes =
+            $this->routes->forUser($user);
+
         return view('dashboard', [
-            'box_permissions' => $this->permissions->forUser($user)
+            'boxes' => $boxes,
+            'routes' => $routes,
         ]);
     }
 }

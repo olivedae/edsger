@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Route;
+use App\Policies\RoutePolicy;
 use App\BoxShare;
 use App\Policies\BoxSharePolicy;
 
@@ -21,6 +23,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         BoxPermission::class => BoxPermissionPolicy::class,
         BoxShare::class => BoxSharePolicy::class,
+        Route::class => RoutePolicy::class,
     ];
 
     /**

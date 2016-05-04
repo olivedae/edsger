@@ -1,0 +1,71 @@
+.popup-bg, .popup-bg-image {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.popup-bg {
+  z-index: 2;
+  background: rgba(102, 102, 102, 0.7);
+}
+
+.popup-bg-image {
+  z-index: 1;
+  background: url('../img/poly-map.jpg') center center;
+  background-size: cover;
+}
+
+.popup-container {
+  margin-top: 125px;
+
+  .popup {
+    padding: 0;
+    z-index: 3;
+    border: 1px solid rgb(147, 147, 147);
+    border-radius: 5px;
+    background: rgb(244, 248, 255);
+
+    .popup-header {
+      border-bottom: 1px solid rgb(207, 207, 207);
+      text-align: left;
+      background: #fff;
+
+      .popup-header-inner {
+        padding: 20px 20px;
+      }
+
+      h2 {
+        margin: 0;
+        padding: 0;
+        font-size: 1.5em;
+        color: rgb(126, 126, 126);
+        font-weight: 200;
+        display: inline-block;
+      }
+
+      a {
+        color: rgb(207, 207, 207);
+        font-size: 1.5em;
+        float: right;
+        margin: -5px 0 0 0;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    .popup-body {
+      .popup-body-inner {
+        padding: 35px 20px;
+      }
+      button {
+        float: right;
+  		margin-right: 17px;
+  		margin: 75px 17px -15px auto;
+      }
+    }
+  }
+}

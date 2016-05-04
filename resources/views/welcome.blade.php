@@ -22,13 +22,13 @@
 <section id="welcome-hero">
     <div class="container">
         <div class="row">
-            <div class="sidebar-description text-left col-md-4 col-md-offset-1">
-                <h1>Edsger works the way you do</h1>
+            <div class="sidebar-description text-left col-md-5 col-md-offset-1">
+                <h1>Edsger, for the places you'll go</h1>
                 <p>
                     Pour-over mlkshk locavore paleo seitan DIY
                 </p>
             </div>
-            <div class="col-md-4 col-md-offset-2">
+            <div class="col-md-4 col-md-offset-1">
                 <div id="welcome-register-form">
                     @include('auth.forms.welcome-register')
                 </div>
