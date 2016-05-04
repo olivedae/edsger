@@ -16,6 +16,7 @@ class CreateRoutesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description')->nullable();
+            $table->boolean('in_default_box');
             $table->timestamps();
         });
     }

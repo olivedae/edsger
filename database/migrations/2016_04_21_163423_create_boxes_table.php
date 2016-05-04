@@ -14,6 +14,8 @@ class CreateBoxesTable extends Migration
     {
         Schema::create('boxes', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('in_default_box');
+            $table->text('description')->nullable();
             $table->string('name');
             $table->timestamps();
         });
