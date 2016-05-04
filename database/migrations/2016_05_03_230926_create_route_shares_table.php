@@ -14,6 +14,20 @@ class CreateRouteSharesTable extends Migration
     {
         Schema::create('route_shares', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_from_id')->unsigned();
+            $table->integer('user_to_id')->unsigned();
+            $table->integer('route_id')->unsigned();
+            $table->foreign('user_from_id')
+                  ->references('id')->on('users')
+                  ->onDelete('cascade');
+            $table->foreign('user_to_id')
+                  ->references('id')->on('users')
+                  ->onDelete('cascade');
+            $table->foreign('route_id')
+                  ->references('id')->on('routes')
+                  ->onDelete('cascade');
+            $table->boolean('accepted')->default(false);
+            $table->boolean('pending')->default(true);
             $table->timestamps();
         });
     }

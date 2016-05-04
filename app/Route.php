@@ -24,4 +24,12 @@ class Route extends Model
     {
         return $this->hasMany(RouteLocation::class);
     }
+
+    /**
+     * Get the shares for this route.
+     */
+    public function shares()
+    {
+        return $this->hasMany(RouteShare::class);
+    }
 }

@@ -1,13 +1,13 @@
 @extends('layouts.popup')
-@section('title', 'Routes')
-@section('header', 'Create a new route')
+@section('title', 'Boxes')
+@section('header', 'Share a box')
 
 @section('content')
 
 <!-- Display Validation Errors -->
 @include('common.errors')
 
-<form action="/share/boxes/{{ $permission->id }}" method="POST" class="form-horizontal">
+<form action="/shares/boxes/{{ $box->id }}" method="POST" class="form-horizontal">
     {{ csrf_field() }}
 
     <!-- Box name -->
