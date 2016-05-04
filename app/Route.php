@@ -14,7 +14,8 @@ class Route extends Model
      */
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        'in_default_box'
     ];
 
     /**
@@ -31,5 +32,22 @@ class Route extends Model
     public function shares()
     {
         return $this->hasMany(RouteShare::class);
+    }
+
+    /**
+     * Gets the parent container/box for
+     *     this route.
+     */
+    public function parentBox()
+    {
+        if ($this->in_default_box) {
+            return $this->hasOne(DefaultBox::class);
+        }
+
+        /**
+         * Otherwise the route is held
+         *    inside a normal, user created box.
+         */
+        return $this->hasOne(Box::class);
     }
 }
