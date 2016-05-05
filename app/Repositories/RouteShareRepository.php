@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\User;
 use App\Route;
 use App\RouteShare;
+use App\RoutePermission;
 
 class RouteShareRepository
 {
@@ -16,9 +17,10 @@ class RouteShareRepository
      */
     public function forInvitationToUser(User $user)
     {
-        return RouteShare::where('user_to_id', $user->id)
-                         ->orderBy('created_at', 'asc')
-                         ->get();
+        return
+            RouteShare::where('user_to_id', $user->id)
+                ->orderBy('created_at', 'asc')
+                ->get();
     }
 
     /**
@@ -29,9 +31,10 @@ class RouteShareRepository
      */
     public function forInvitationFromUser(User $user)
     {
-        return RouteShare::where('user_from_id', $user->id)
-                          ->orderBy('created_at', 'asc')
-                          ->get();
+        return
+            RouteShare::where('user_from_id', $user->id)
+                ->orderBy('created_at', 'asc')
+                ->get();
     }
 
     /**
@@ -42,8 +45,15 @@ class RouteShareRepository
      */
     public function forRoute(Route $route)
     {
-        return RouteShare::where('route_id', $route->id)
-                          ->orderBy('created_at', 'asc')
-                          ->get();
+        $permissions =
+            RoutePermission::where('route_id', $route->id)
+                ->orderBy('created_at', 'asc')
+                ->get();
+
+        $users = $permissions->map(function($item, $key) {
+            return $item->user();
+        });
+
+        return $users;
     }
 }

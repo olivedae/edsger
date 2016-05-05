@@ -37,7 +37,7 @@ class RouteShareController extends Controller
      * Display a view for sharing routes
      *
      * @param Request $request
-     * @param BoxPermission $permission
+     * @param Route $route
      * @return Response
      */
     public function new(Request $request, Route $route)
@@ -54,13 +54,11 @@ class RouteShareController extends Controller
      *     creates a new entry in route_permissions
      *
      * @param Request $request
-     * @param BoxPermission $permission
-     * @return BoxPermission
+     * @param Route $route
+     * @return Response
      */
     public function store(Request $request, Route $route)
     {
-        $this->authorize('shareable', $route);
-
         $this->validate($request, [
             'email' => 'required|email|max:255'
         ]);
@@ -68,6 +66,8 @@ class RouteShareController extends Controller
         $user =
             User::where('email', '=', $request->email)
                 ->firstOrFail();
+
+        $this->authorize('shareable', $route);
 
         /**
          * Creates a new route permission
@@ -111,22 +111,29 @@ class RouteShareController extends Controller
     /**
      * Displays a view of all the users a certain
      *     route has been shared with.
+     *
+     * @param Request $request
+     * @param Route $route
+     * @return Response
      */
     public function index(Request $request, Route $route)
     {
         $this->authorize('index', $route);
 
-        $route_shares =
+        $routeShares =
             $this->shares->forRoute($route);
 
         return view('shares.routes.index', [
-            'route_shares' => $route_shares
+            'route_shares' => $routeShares
         ]);
     }
 
     /**
      * Deletes a given share
      *
+     * @param Request $request
+     * @param RouteShare $share
+     * @return Response
      */
     public function destroy(Request $request, RouteShare $share)
     {
@@ -149,6 +156,8 @@ class RouteShareController extends Controller
             DefaultBoxContainsRoutes::where('default_box_id', $defaultBox->id)
                 ->where('route_id', $share->route_id)
                 ->first();
+
+        $containerEntry->delete();
 
         return redirect('dashboard');
     }

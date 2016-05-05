@@ -22,9 +22,9 @@ class BoxPermission extends Model
     /**
      * Get owner of the box
      */
-    public function user_access()
+    public function user()
     {
-        return $this->belongsTo(User::class);
+        return User::where('id', $this->user_id)->first();
     }
 
     /**
@@ -32,31 +32,7 @@ class BoxPermission extends Model
      */
     public function box()
     {
-        return $this->belongsTo(Box::class);
-    }
-
-    /**
-     * Convenience method for grabbing a model
-     *     instance of Box which the permission
-     *     is for.
-     *
-     * @return Box
-     */
-    public function unwrap_box()
-    {
         return Box::where('id', $this->box_id)->first();
-    }
-
-    /**
-     * Convenience method grabbing a model
-     *     instance of User which the permission
-     *     is for.
-     *
-     * @return User
-     */
-    public function unwrapUser()
-    {
-        return User::where('id', $this->user_id)->first();
     }
 
     /**
@@ -66,10 +42,11 @@ class BoxPermission extends Model
      *
      * @return BoxPermission[]
      */
-     public function unwrap_shares()
+     public function shares()
      {
-         return BoxPermission::where('box_id', $this->box_id)
-                             ->where('id', '!=', $this->id)
-                             ->get();
+         return
+            BoxPermission::where('box_id', $this->box_id)
+                ->where('id', '!=', $this->id)
+                ->get();
      }
 }

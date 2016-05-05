@@ -37,14 +37,17 @@ class RoutePermission extends Model
     }
 
     /**
-     * Convenience method grabbing a model
-     *     instance of User which the permission
-     *     is for.
+     * Convenience method for gather the users
+     *     that this route has been shared with.
+     *     Excludes itself.
      *
-     * @return User
+     * @return RoutePermission[]
      */
-    public function unwrapUser()
-    {
-        return User::where('id', $this->user_id)->first();
-    }
+     public function shares()
+     {
+         return
+            RoutePermission::where('route_id', $this->route_id)
+                ->where('id', '!=', $this->id)
+                ->get();
+     }
 }

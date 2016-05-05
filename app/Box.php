@@ -23,15 +23,20 @@ class Box extends Model
      */
     public function permissions()
     {
-        return $this->hasMany(BoxPermission::class);
+        return
+            BoxPermission::where('box_id', $this->id)
+                ->get();
     }
 
     /**
      * Gets the shares for this box.
      */
-    public function shares()
+    public function shares(User $user)
     {
-        return $this->hasMany(BoxShare::class);
+        return
+            BoxPermission::where('box_id', $this->id)
+                ->where('user_id', '!=', $user->id)
+                ->get();
     }
 
     /**
@@ -63,16 +68,5 @@ class Box extends Model
                 ->first();
 
         return $permission->is_owner;
-    }
-
-    /**
-     * Returns the shares for a given box
-     */
-    public function unwrapShares(User $user)
-    {
-        return
-            BoxPermission::where('box_id', $this->id)
-                ->where('user_id', '!=', $user->id)
-                ->get();
     }
 }

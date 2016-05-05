@@ -19,7 +19,7 @@ class Route extends Model
     ];
 
     /**
-     * Get all of the tasks for the user.
+     * Get all of the locations for this route.
      */
     public function locations()
     {
@@ -27,11 +27,24 @@ class Route extends Model
     }
 
     /**
+     * Get all the permissions for this route.
+     */
+    public function permissions()
+    {
+        return
+            RoutePermission::where('route_id', $this->id)
+                ->get();
+    }
+
+    /**
      * Get the shares for this route.
      */
-    public function shares()
+    public function shares(User $user)
     {
-        return $this->hasMany(RouteShare::class);
+        return
+            RoutePermission::where('route_id', $this->id)
+                ->where('user_id', '!=', $user->id)
+                ->get();
     }
 
     /**
@@ -63,16 +76,5 @@ class Route extends Model
                 ->first();
 
         return $permission->is_owner;
-    }
-
-    /**
-     * Returns the shares for a given route
-     */
-    public function unwrapShares(User $user)
-    {
-        return
-            RoutePermission::where('route_id', $this->id)
-                ->where('user_id', '!=', $user->id)
-                ->get();
     }
 }

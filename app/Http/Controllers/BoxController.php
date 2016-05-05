@@ -33,6 +33,23 @@ class BoxController extends Controller
     }
 
     /**
+     * Display a list of all of the user's boxes.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+        $boxes =
+            $this->boxes
+                 ->forUser($request->user());
+
+        return view('boxes.index', [
+            'boxes' => $boxes,
+        ]);
+    }
+
+    /**
      * Create a new entry in box_permissions, which
      *     is the default for owners making a new
      *     box.

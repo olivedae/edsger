@@ -55,6 +55,12 @@ Route::get('/boxes/new',
         'uses' => 'BoxController@new'
     ]
 );
+Route::get('/boxes',
+    [
+        'as' => 'boxes',
+        'uses' => 'BoxController@index'
+    ]
+);
 Route::post('/boxes',
     [
         'as' => 'create_box',

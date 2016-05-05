@@ -62,10 +62,10 @@
                              <a href="#" class="box-name">{{ $item->name }}</a>
                         </div>
                         <div class="col-md-4">
-                            @if ( count($item->unwrapShares($user)) > 0)
+                            @if ( count($item->shares($user)) > 0)
                                 <div class="box-shared-with">
-                                @foreach ($item->unwrapShares($user) as $share)
-                                    <img src={{ $share->unwrapUser()->icon->data }}>
+                                @foreach ($item->shares($user) as $share)
+                                    <img src={{ $share->user()->icon->data }}>
                                 @endforeach
                                 </div>
                             @else
