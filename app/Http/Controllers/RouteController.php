@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Route;
+use App\DefaultBox;
+use App\DefaultBoxContainsRoutes;
 use App\RoutePermission;
 use App\Repositories\RouteRepository;
 use Illuminate\Http\Request;
@@ -12,9 +14,9 @@ class RouteController extends Controller
 {
 
     /**
-     * The task repository instance.
+     * The route repository instance.
      *
-     * @var TaskRepository
+     * @var RouteRepository
      */
     protected $routes;
 
@@ -61,6 +63,7 @@ class RouteController extends Controller
         $route = Route::create([
             'name' => $request->name,
             'description' => $request->description,
+            'in_default_box' => true,
         ]);
 
         // TODO: insert given locations
@@ -70,6 +73,15 @@ class RouteController extends Controller
             'route_id' => $route->id,
             'is_owner' => true,
             'can_edit' => true,
+        ]);
+
+        $box =
+            DefaultBox::where('user_id', $request->user()->id)
+                ->first();
+
+        DefaultBoxContainsRoutes::create([
+            'route_id' => $route->id,
+            'default_box_id' => $box->id,
         ]);
 
         return redirect('dashboard');

@@ -7,31 +7,32 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\BoxPermissionRepository;
 use App\Repositories\RoutePermissionRepository;
+use App\Repositories\DefaultBoxRepository;
 
 class DashboardController extends Controller
 {
     /**
-     * The task repository instance.
+     * The DefaultBox repository instance.
      *
-     * @var BoxPermissionRepository
+     * @var DefaultBoxRepository
      */
-    protected $boxes, $routes;
+    protected $defaultBox;
 
     /**
      * Create a new controller instance.
      *
-     * @param  BoxPermissionRepository  $permissions
+     * @param  DefaultBoxRepository $defaultBox
      * @return void
      */
-    public function __construct(BoxPermissionRepository $boxes, RoutePermissionRepository $routes)
+    public function __construct(DefaultBoxRepository $defaultBox)
     {
         $this->middleware('auth');
-        $this->boxes = $boxes;
-        $this->routes = $routes;
+        $this->defaultBox = $defaultBox;
     }
 
     /**
-     * Display a list of all of the user's permissions.
+     * Display a short list of all of the user's permissions
+     *     contained in the default box.
      *
      * @param  Request  $request
      * @return Response
@@ -40,15 +41,12 @@ class DashboardController extends Controller
     {
         $user = $request->user();
 
-        $boxes =
-            $this->boxes->forUser($user);
+        $items =
+            $this->defaultBox->forUser($user);
 
-        $routes =
-            $this->routes->forUser($user);
-
-        return view('dashboard', [
-            'boxes' => $boxes,
-            'routes' => $routes,
+        return view('dashboard.index', [
+            'items' => $items,
+            'user' => $request->user(),
         ]);
     }
 }

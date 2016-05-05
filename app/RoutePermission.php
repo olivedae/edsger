@@ -35,4 +35,16 @@ class RoutePermission extends Model
     {
         return Route::where('id', $this->route_id)->first();
     }
+
+    /**
+     * Convenience method grabbing a model
+     *     instance of User which the permission
+     *     is for.
+     *
+     * @return User
+     */
+    public function unwrapUser()
+    {
+        return User::where('id', $this->user_id)->first();
+    }
 }

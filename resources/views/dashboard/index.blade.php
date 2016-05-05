@@ -14,7 +14,7 @@
 
             <div id="dashboard-sidebar" class="col-md-4">
                 <div id="browse">
-                    @include('boxes.index')
+                    @include('dashboard.items')
                 </div>
             </div>
 

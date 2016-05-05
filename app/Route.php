@@ -50,4 +50,29 @@ class Route extends Model
          */
         return $this->hasOne(Box::class);
     }
+
+    /**
+     * Returns whether the route is owned by
+     *     given user.
+     */
+    public function isOwner(User $user)
+    {
+        $permission =
+            RoutePermission::where('route_id', $this->id)
+                ->where('user_id', $user->id)
+                ->first();
+
+        return $permission->is_owner;
+    }
+
+    /**
+     * Returns the shares for a given route
+     */
+    public function unwrapShares(User $user)
+    {
+        return
+            RoutePermission::where('route_id', $this->id)
+                ->where('user_id', '!=', $user->id)
+                ->get();
+    }
 }

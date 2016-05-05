@@ -52,16 +52,16 @@ Route::post('register', 'Auth\AuthController@postRegister');
 Route::get('/boxes/new',
     [
         'as' => 'new_box',
-        'uses' => 'BoxPermissionController@new'
+        'uses' => 'BoxController@new'
     ]
 );
 Route::post('/boxes',
     [
         'as' => 'create_box',
-        'uses' => 'BoxPermissionController@store'
+        'uses' => 'BoxController@store'
     ]
 );
-Route::delete('/boxes/{boxpermission}', 'BoxPermissionController@destroy');
+Route::delete('/boxes/{box}', 'BoxController@destroy');
 
 /**
  * Box shares
@@ -72,13 +72,13 @@ Route::get('/shares/boxes/{box}',
         'uses' => 'BoxShareController@index',
     ]
 );
-Route::get('/shares/boxes/new/{boxpermission}',
+Route::get('/shares/boxes/new/{box}',
     [
         'as' => 'new_box_share',
         'uses' => 'BoxShareController@new'
     ]
 );
-Route::post('/shares/boxes/{boxpermission}',
+Route::post('/shares/boxes/{box}',
     [
         'as' => 'create_box_share',
         'uses' => 'BoxShareController@store'
