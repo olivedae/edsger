@@ -137,9 +137,18 @@ class RouteShareController extends Controller
         $permission =
             RoutePermission::where('route_id', $share->route_id)
                 ->where('user_id', $request->user()->id)
-                ->firstOrFail();
+                ->first();
 
         $permission->delete();
+
+        $defaultBox =
+            DefaultBox::where('user_id', $request->user()->id)
+                ->first();
+
+        $containerEntry =
+            DefaultBoxContainsRoutes::where('default_box_id', $defaultBox->id)
+                ->where('route_id', $share->route_id)
+                ->first();
 
         return redirect('dashboard');
     }

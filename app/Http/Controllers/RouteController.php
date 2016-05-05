@@ -99,9 +99,9 @@ class RouteController extends Controller
     }
 
     /**
-     * Deletes an entry in route_permissions.
-     *     In addition, deletes the actual
-     *     route if the user is the owner.
+     * Deletes an entry in routes if and
+     *     only if the user deleteing
+     *     the route is the owner of it.
      *
      * @param Request $request
      * @param Route $route
@@ -111,25 +111,7 @@ class RouteController extends Controller
     {
         $this->authorize('destroy', $route);
 
-        /*
-         * Delete the instance of RoutePermission
-         */
-        $permission =
-            RoutePermission::where('user_id', $request->user()->id)
-                ->where('route_id', $route->id)
-                ->first();
-
-        $permission->delete();
-
-        /*
-         * If they're the owner of the route,
-         *     delete that route also which
-         *     cascades for entries in
-         *     route_permissions and route_shares.
-         */
-        if ($permission->is_owner) {
-            $route->delete();
-        }
+        $route->delete();
 
         return redirect('dashboard');
     }
