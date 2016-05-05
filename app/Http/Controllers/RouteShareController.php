@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
+use App\DefaultBox;
+use App\DefaultBoxContainsRoutes;
 use App\Repositories\RouteShareRepository;
 use App\Route;
 use App\RoutePermission;
@@ -74,7 +76,7 @@ class RouteShareController extends Controller
 
         $canEdit = $request->edit ? true : false;
 
-        $new_permission = RoutePermission::create([
+        $permission = RoutePermission::create([
             'user_id' => $user->id,
             'route_id' => $route->id,
             'is_owner' => false,
@@ -91,6 +93,16 @@ class RouteShareController extends Controller
             'route_id' => $route->id,
             'accepted' => false,
             'pending' => true,
+        ]);
+
+        /**
+         * Puts it in the default box for the user
+         */
+
+        $defaultBox = DefaultBox::where('user_id', $user->id)->first();
+        DefaultBoxContainsRoutes::create([
+            'default_box_id' => $defaultBox->id,
+            'route_id' => $route->id,
         ]);
 
         return redirect('dashboard');
@@ -123,9 +135,9 @@ class RouteShareController extends Controller
         $share->delete();
 
         $permission =
-            RoutePermission::where('route_id', '=', $share->route_id)
-                            ->where('user_id', '=', $request->user()->id)
-                            ->firstOrFail();
+            RoutePermission::where('route_id', $share->route_id)
+                ->where('user_id', $request->user()->id)
+                ->firstOrFail();
 
         $permission->delete();
 
