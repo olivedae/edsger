@@ -54,7 +54,7 @@ class BoxPermission extends Model
      *
      * @return User
      */
-    public function unwrap_user()
+    public function unwrapUser()
     {
         return User::where('id', $this->user_id)->first();
     }

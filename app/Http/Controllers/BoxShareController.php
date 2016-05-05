@@ -28,12 +28,12 @@ class BoxShareController extends Controller
      * @param BoxPermission $permission
      * @return Response
      */
-    public function new(Request $request, BoxPermission $permission)
+    public function new(Request $request, Box $box)
     {
-        $this->authorize('shareable', $permission);
+        $this->authorize('shareable', $box);
 
         return view('shares.boxes.new', [
-            'permission' => $permission
+            'box' => $box
         ]);
     }
 
@@ -48,7 +48,7 @@ class BoxShareController extends Controller
      * @param BoxPermission $permission
      * @return BoxPermission
      */
-    public function store(Request $request, BoxPermission $permission)
+    public function store(Request $request, Box $box)
     {
         $this->validate($request, [
             'email' => 'required|email|max:255'
@@ -58,15 +58,15 @@ class BoxShareController extends Controller
             User::where('email', '=', $request->email)
                  ->firstOrFail();
 
-        $this->authorize('shareable', $permission);
+        $this->authorize('shareable', $box);
 
         // Creates a new BoxPermission
 
         $canEdit = $request->edit ? true : false;
 
-        $new_permission = BoxPermission::create([
+        $permission = BoxPermission::create([
             'user_id' => $user->id,
-            'box_id' => $permission->box_id,
+            'box_id' => $box->id,
             'is_owner' => false,
             'can_edit' => $canEdit,
         ]);
@@ -76,7 +76,7 @@ class BoxShareController extends Controller
         $invitation = BoxShare::create([
             'user_from_id' => $request->user()->id,
             'user_to_id' => $user->id,
-            'box_id' => $permission->box_id,
+            'box_id' => $box->id,
             'accepted' => false,
             'pending' => true,
         ]);
@@ -90,16 +90,33 @@ class BoxShareController extends Controller
      */
     public function index(Request $request, Box $box)
     {
+        $this->authorize('index', $box);
 
+        $boxShares =
+            $this->shares->forBox($box);
+
+        return view('shares.boxes.index', [
+            'box_shares' => $boxShares
+        ]);
     }
 
     /**
      * Deletes a given share
      *
-     * TODO
      */
     public function destroy(Request $request, BoxShare $share)
     {
+        $this->authorize('destroy', $share);
 
+        $share->delete();
+
+        $permission =
+            BoxPermission::where('box_id', $share->box_id)
+                ->where('user_id', $request->user()->id)
+                ->firstOrFail();
+
+        $permission->delete();
+
+        return redirect('dashboard');
     }
 }

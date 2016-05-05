@@ -6,18 +6,20 @@ use App\BoxPermission;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Repositories\BoxPermissionRepository;
+use App\Repositories\BoxRepository;
 use App\Box;
 use DB;
+use App\DefaultBox;
+use App\DefaultBoxContainsBoxes;
 
 class BoxPermissionController extends Controller
 {
     /**
-     * The task repository instance.
+     * The box repository instance.
      *
-     * @var TaskRepository
+     * @var BoxRepository
      */
-    protected $permissions;
+    protected $boxes;
 
 
     /**
@@ -26,10 +28,10 @@ class BoxPermissionController extends Controller
      * @param  BoxPermissionRepository  $permissions
      * @return void
      */
-    public function __construct(BoxPermissionRepository $permissions)
+    public function __construct(BoxRepository $boxes)
     {
         $this->middleware('auth');
-        $this->permissions = $permissions;
+        $this->boxes = $boxes;
     }
 
 
@@ -48,7 +50,9 @@ class BoxPermissionController extends Controller
         ]);
 
         $box = Box::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'description' => $request->description,
+            'in_default_box' => true
         ]);
 
         $user = $request->user();
@@ -58,6 +62,15 @@ class BoxPermissionController extends Controller
             'box_id' => $box->id,
             'is_owner' => true,
             'can_edit' => true,
+        ]);
+
+        $defaultBox =
+            DefaultBox::where('user_id', $request->user()->id)
+                ->first();
+
+        DefaultBoxContainsBoxes::create([
+            'box_id' => $box->id,
+            'default_box_id' => $defaultBox->id,
         ]);
 
         return redirect('dashboard');
@@ -83,13 +96,18 @@ class BoxPermissionController extends Controller
      * @param BoxPermission $permission
      * @return Response
      */
-    public function destroy(Request $request, BoxPermission $permission)
+    public function destroy(Request $request, Box $box)
     {
-        $this->authorize('destroy', $permission);
+        $this->authorize('destroy', $box);
 
         /*
          * Delete the instance of BoxPermission
          */
+        $permission =
+            BoxPermission::where('user_id', $request->user()->id)
+                ->where('box_id', $box->id)
+                ->first();
+
         $permission->delete();
 
         /*
@@ -99,7 +117,7 @@ class BoxPermissionController extends Controller
          *     box_permissions.
          */
         if ($permission->is_owner) {
-            Box::destroy($permission->box_id);
+            $box->delete();
         }
 
         return redirect('dashboard');

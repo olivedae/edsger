@@ -50,4 +50,29 @@ class Box extends Model
          */
         return $this->hasOne(Box::class);
     }
+
+    /**
+     * Returns whether the box is owned by the
+     *     given user.
+     */
+    public function isOwner(User $user)
+    {
+        $permission =
+            BoxPermission::where('box_id', $this->id)
+                ->where('user_id', $user->id)
+                ->first();
+
+        return $permission->is_owner;
+    }
+
+    /**
+     * Returns the shares for a given box
+     */
+    public function unwrapShares(User $user)
+    {
+        return
+            BoxPermission::where('box_id', $this->id)
+                ->where('user_id', '!=', $user->id)
+                ->get();
+    }
 }
