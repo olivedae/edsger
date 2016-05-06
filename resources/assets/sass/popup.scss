@@ -69,3 +69,26 @@
     }
   }
 }
+
+.popup-body {
+  label {
+    color: rgb(176, 176, 176);
+    margin-top: -15px;
+    padding-bottom: 7px;
+    font-weight: 300;
+  }
+  div.popup-sizeable-select-list select {
+    background: white;
+    -webkit-appearance:none;
+       -moz-appearance: none;
+            appearance: none;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .select-caret {
+	position: relative;
+	left: 85%;
+	top: -17;
+  }
+}

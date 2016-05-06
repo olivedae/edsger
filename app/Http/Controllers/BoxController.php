@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BoxContainsBoxes;
 use App\BoxPermission;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -61,12 +62,14 @@ class BoxController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:255',
+            'parent' => 'required',
         ]);
+
+        $inDefaultBox = $request->parent == 'default' ? true : false;
 
         $box = Box::create([
             'name' => $request->name,
             'description' => $request->description,
-            'in_default_box' => true
         ]);
 
         $user = $request->user();
@@ -78,14 +81,28 @@ class BoxController extends Controller
             'can_edit' => true,
         ]);
 
-        $defaultBox =
-            DefaultBox::where('user_id', $request->user()->id)
-                ->first();
+        if ($inDefaultBox) {
+            $defaultBox =
+                DefaultBox::where('user_id', $request->user()->id)
+                    ->first();
 
-        DefaultBoxContainsBoxes::create([
-            'box_id' => $box->id,
-            'default_box_id' => $defaultBox->id,
-        ]);
+            DefaultBoxContainsBoxes::create([
+                'box_id' => $box->id,
+                'default_box_id' => $defaultBox->id,
+            ]);
+        } else {
+            $parent =
+                Box::where('id', $request->parent)
+                    ->firstOrFail();
+            $permission =
+                BoxPermission::where('box_id', $parent->id)
+                    ->where('user_id', $user->id)
+                    ->firstOrFail();
+            BoxContainsBoxes::create([
+                'parent_box_id' => $parent->id,
+                'box_id' => $box->id,
+            ]);
+        }
 
         return redirect('dashboard');
     }
@@ -98,7 +115,11 @@ class BoxController extends Controller
     */
    public function new(Request $request)
    {
-       return view('boxes.new');
+       $user = $request->user();
+       $boxes = $this->boxes->forUser($user);
+       return view('boxes.new', [
+           "boxes" => $boxes,
+       ]);
    }
 
    /**

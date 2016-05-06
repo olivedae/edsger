@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DefaultBoxContainsBoxes extends Model
+class BoxContainsBoxes extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,22 +12,22 @@ class DefaultBoxContainsBoxes extends Model
      * @var array
      */
     protected $fillable = [
-        'default_box_id',
+        'parent_box_id',
         'box_id'
     ];
 
     /**
-     * Gets the default box for this
+     * Gets the parent box for this
      *    instance.
      */
-    public function defaultBox()
+    public function parentBox()
     {
-        return DefaultBox::where('id'. $this->default_box_id)->first();
+        return Box::where('id', $this->parent_box_id)->first();
     }
 
     /**
-     * Gets the box for this
-     *     instance.
+     * Gets the child box contained in the
+     *     parent box.
      */
     public function box()
     {

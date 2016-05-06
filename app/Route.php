@@ -50,8 +50,10 @@ class Route extends Model
     /**
      * Gets the parent container/box for
      *     this route.
+     *
+     * TODO: Similar to Box, regard as unusable
      */
-    public function parentBox()
+    public function parents()
     {
         if ($this->in_default_box) {
             return $this->hasOne(DefaultBox::class);
