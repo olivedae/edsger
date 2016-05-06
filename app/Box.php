@@ -15,7 +15,6 @@ class Box extends Model
     protected $fillable = [
         'name',
         'description',
-        'in_default_box'
     ];
 
     /**
