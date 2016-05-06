@@ -1,84 +1,26 @@
-<div id="browse-options">
-    <div class="row">
-        <div class="page-header-text col-md-7 col-md-offset-1">
-            Edsger
-        </div>
-        <div class="browse-menu col-md-4">
-            <ul id="browse-menu" class="list-inline">
-                <li>
-                    <label for="new_route_button">
-                        <a id="new_route_button" href="{{ URL::route('new_route') }}">
-                            <img src="img/new_route.ico" alt="New route">
-                        </a>
-                    </label>
-                </li>
-                <li>
-                    <label for="new_box_button">
-                        <a id="new_box_button" href="{{ URL::route('new_box') }}">
-                            <img src="img/new_box.png" alt="New box">
-                        </a>
-                    </label>
-                </li>
-                <li>
-                    <label for="share_box_button">
-                        <a id="share_box_button" href="#">
-                            <img src="img/share.png" alt="Share box">
-                        </a>
-                    </label>
-                </li>
-            </ul>
-        </div> <!-- End of Browse menu div -->
-    </div>
-</div>
+@extends('layouts.popup')
+@section('title', 'Boxes')
+@section('header', 'Boxes')
 
-<div class="browse-boxes-div row">
-    @if (count($boxes) > 0)
-        <div id="browse-boxes-header" class="col-md-10 col-md-offset-1">
-            <div class="row">
-                <div class="col-md-5">Name</div>
-                <div class="col-md-4">Shared with</div>
-            </div>
-        </div>
-        <div class="boxes-table col-md-10 col-md-offset-1">
-            <ol id="browse-boxes">
-                @foreach ($boxes as $permission)
-                    <li class="browse-box">
-                        <div class="col-md-1 browse-image">
-                            <!--<img src="img/box.png" alt="Box">-->
-                            @if ($permission->is_owner)
-                                <div class="box-type-icon owner-box-icon"></div>
-                            @else
-                                <div class="box-type-icon shared-box-icon"></div>
-                            @endif
-                        </div>
-                        <div class="col-md-4">
-                             <a href="#" class="box-name">{{ $permission->unwrap_box()->name }}</a>
-                        </div>
-                        <div class="col-md-4">
-                            @if ( count($permission->unwrap_shares()) > 0)
-                                <div class="box-shared-with">
-                                @foreach ($permission->unwrap_shares() as $share)
-                                    <img src={{ $share->unwrap_user()->icon->data }}>
-                                @endforeach
-                                </div>
-                            @else
-                                <span class="box-shared-with">--</span>
-                            @endif
-                        </div>
-                        <div class="">
-                            <a href="/share/boxes/{{ $permission->id }}" class="btn btn-share">Share</a>
-                            <div class="delete-form">
-                                <form action="/boxes/{{ $permission->id }}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
+@section('content')
 
-                                    <button class="btn btn-delete">X</button>
-                                </form>
-                            </div>
-                        </div>
-                     </li>
-                @endforeach
-            </ol>
-        </div>
-    @endif
-</div>
+<ol>
+    @foreach($boxes as $box)
+        <li><ul>
+            <li>{{ $box->name }}</li>
+            <li>
+                <a href="/shares/boxes/new/{{ $box->id }}" class="btn btn-share">Share</a>
+            </li>
+            <li>
+                <form action="/boxes/{{ $box->id }}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+
+                    <button class="btn btn-delete">X</button>
+                </form>
+            </li>
+        </ul></li>
+    @endforeach
+</ol>
+
+@endsection

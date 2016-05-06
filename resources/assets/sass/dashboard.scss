@@ -113,16 +113,19 @@
   }
 }
 
-.box-type-icon {
+.box-type-icon, .route-type-icon {
   border-radius: 50%;
   margin: 0 -15px 0 5px;
   height: 15px;
   width: 15px;
 }
-.owner-box-icon {
+.route-type-icon {
+    border-radius: 0;
+}
+.owner-box-icon, .owner-route-icon {
   background: #ADEDB9;
 }
-.shared-box-icon {
+.shared-box-icon, .shared-route-icon {
   background: #ead4ee;
 }
 

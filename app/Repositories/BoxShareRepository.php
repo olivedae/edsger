@@ -3,14 +3,14 @@
 namespace App\Repositories;
 
 use App\User;
-use App\Route;
-use App\RouteShare;
-use App\RoutePermission;
+use App\Box;
+use App\BoxShare;
+use App\BoxPermission;
 
-class RouteShareRepository
+class BoxShareRepository
 {
     /**
-     * Get all the shared routes for a given user
+     * Get all the shared boxes for a given user
      *
      * @param User $user
      * @return Collection
@@ -18,13 +18,13 @@ class RouteShareRepository
     public function forInvitationToUser(User $user)
     {
         return
-            RouteShare::where('user_to_id', $user->id)
+            BoxShare::where('user_to_id', $user->id)
                 ->orderBy('created_at', 'asc')
                 ->get();
     }
 
     /**
-     * Get all the routes a user has shared
+     * Get all the boxes a user has shared
      *
      * @param User $user
      * @return Collection
@@ -32,21 +32,21 @@ class RouteShareRepository
     public function forInvitationFromUser(User $user)
     {
         return
-            RouteShare::where('user_from_id', $user->id)
+            BoxShare::where('user_from_id', $user->id)
                 ->orderBy('created_at', 'asc')
                 ->get();
     }
 
     /**
-     * Get all the users a route has been shared with
+     * Get all the users a box has been shared with
      *
-     * @param Route $route
+     * @param Box $box
      * @return Collection
      */
-    public function forRoute(Route $route)
+    public function forBox(Box $box)
     {
         $permissions =
-            RoutePermission::where('route_id', $route->id)
+            BoxPermission::where('box_id', $box->id)
                 ->orderBy('created_at', 'asc')
                 ->get();
 

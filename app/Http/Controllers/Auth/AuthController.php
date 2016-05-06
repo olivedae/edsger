@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\DefaultBox;
 use App\User;
 use App\UserIcon;
 use App\Classes\Identicon_Generator;
@@ -76,20 +77,20 @@ class AuthController extends Controller
          * a transaction.
          */
 
-         $user_id = NULL;
+        $userID = NULL;
 
         // Start transaction
         DB::beginTransaction();
 
         try {
-            $new_user = User::create([
+            $user = User::create([
                 'first_name' => $data['firstname'],
                 'last_name' => $data['lastname'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
             ]);
 
-            $user_id = $new_user->id;
+            $userID = $user->id;
 
         } catch(ValidationException $e)
         {
@@ -108,10 +109,28 @@ class AuthController extends Controller
             // Now we want to generate a random user icon for this new user
             $base_64_image = Identicon_Generator::createNewIcon($data['email']);
 
-            $UserIcon = UserIcon::create([
-                'user_id' => $user_id,
+            $userIcon = UserIcon::create([
+                'user_id' => $userID,
                 'file_extension' => 'png',
                 'data' => $base_64_image,
+            ]);
+        } catch(ValidationException $e)
+        {
+            // Rollback and then redirect again
+            DB::rollback();
+            return Redirect::to('/register')
+                ->withErrors( $e->getErrors() )
+                ->withInput();
+        } catch(\exception $e)
+        {
+            DB::rollback();
+            throw $e;
+        }
+
+        try {
+            // Now we want to create the default container/box
+            $defaultBox = defaultBox::create([
+                'user_id' => $userID,
             ]);
         } catch(ValidationException $e)
         {
@@ -129,8 +148,7 @@ class AuthController extends Controller
         // If we get this far, it's safe to say we can commit the queries
         DB::commit();
 
-        return $new_user;
+        return $user;
     }
 
 }
-

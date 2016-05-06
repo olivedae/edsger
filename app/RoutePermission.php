@@ -35,4 +35,19 @@ class RoutePermission extends Model
     {
         return Route::where('id', $this->route_id)->first();
     }
+
+    /**
+     * Convenience method for gather the users
+     *     that this route has been shared with.
+     *     Excludes itself.
+     *
+     * @return RoutePermission[]
+     */
+     public function shares()
+     {
+         return
+            RoutePermission::where('route_id', $this->route_id)
+                ->where('id', '!=', $this->id)
+                ->get();
+     }
 }

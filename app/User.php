@@ -68,4 +68,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(RouteShare::class);
     }
+
+    /**
+     * Gets the default box for the
+     *     user.
+     */
+    public function defaultBox()
+    {
+        return $this->hasOne(DefaultBox::class);
+    }
 }
