@@ -104,7 +104,7 @@ class Box extends Model
     public function contents(User $user)
     {
         $items = [];
-
+ 
         $boxes =
             BoxContainsBoxes::where('parent_box_id', $this->id)
                 ->get()->all();

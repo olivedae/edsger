@@ -9,7 +9,7 @@
         <div class="row">
 
             <div id="dashboard-map" class="col-md-7">
-                <img src="img/poly-map.jpg" alt="Map">
+                <img src="{{ url('/') }}./img/poly-map.jpg" alt="Map">
             </div>
 
             <div id="dashboard-sidebar" class="col-md-5">
@@ -37,5 +37,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu_Mf5eXxmzGf7IMIM7m8UGLpaP0fxAck&callback=initMap"
   async defer></script>
 -->
+
+<script src="{{asset('js/dashboard.js')}}"></script>
 
 @endsection

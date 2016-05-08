@@ -107,7 +107,7 @@ class RouteController extends Controller
             ]);
         }
 
-        return redirect('dashboard');
+        return redirect('/');
     }
 
     /**
@@ -140,6 +140,6 @@ class RouteController extends Controller
 
         $route->delete();
 
-        return redirect('dashboard');
+        return redirect('/');
     }
 }

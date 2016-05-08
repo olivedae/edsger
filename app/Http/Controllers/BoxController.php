@@ -104,7 +104,7 @@ class BoxController extends Controller
             ]);
         }
 
-        return redirect('dashboard');
+        return redirect('/');
     }
 
     /**
@@ -137,6 +137,6 @@ class BoxController extends Controller
 
        $box->delete();
 
-       return redirect('dashboard');
+       return redirect('/');
    }
 }

@@ -15,7 +15,7 @@
                 <div class="popup-header">
                     <div class="popup-header-inner">
                         <h2>@yield('header')</h2>
-                        <a href="{{ URL::route('dashboard') }}">x</a>
+                        <a href="{{ URL::route('home') }}">x</a>
                     </div>
                 </div>
                 <div class="popup-body">

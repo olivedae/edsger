@@ -108,7 +108,7 @@ class BoxShareController extends Controller
             'box_id' => $box->id,
         ]);
 
-        return redirect('dashboard');
+        return redirect('home');
     }
 
     /**
@@ -162,6 +162,6 @@ class BoxShareController extends Controller
 
         $containerEntry->delete();
 
-        return redirect('dashboard');
+        return redirect('home');
     }
 }

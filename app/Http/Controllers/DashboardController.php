@@ -8,6 +8,10 @@ use App\Http\Controllers\Controller;
 use App\Repositories\BoxPermissionRepository;
 use App\Repositories\RoutePermissionRepository;
 use App\Repositories\DefaultBoxRepository;
+use App\Policies\BoxPolicy;
+use App\Repositories\BoxRepository;
+use App\Box;
+use App\Route;
 
 class DashboardController extends Controller
 {
@@ -16,7 +20,7 @@ class DashboardController extends Controller
      *
      * @var DefaultBoxRepository
      */
-    protected $defaultBox;
+    protected $defaultBox, $boxes;
 
     /**
      * Create a new controller instance.
@@ -24,10 +28,11 @@ class DashboardController extends Controller
      * @param  DefaultBoxRepository $defaultBox
      * @return void
      */
-    public function __construct(DefaultBoxRepository $defaultBox)
+    public function __construct(DefaultBoxRepository $defaultBox, BoxRepository $boxes)
     {
         $this->middleware('auth');
         $this->defaultBox = $defaultBox;
+        $this->boxes = $boxes;
     }
 
     /**
@@ -46,7 +51,42 @@ class DashboardController extends Controller
 
         return view('dashboard.index', [
             'items' => $items,
-            'user' => $request->user(),
+            'user' => $user,
         ]);
+    }
+
+    /**
+     * Display a short list of items for the
+     *     given box item.
+     *
+     * @param Request $request
+     * @param Box $box
+     * @return Response
+     */
+    public function displayBoxContents(Request $request, Box $box)
+    {
+        $this->authorize('index', $box);
+        $user = $request->user();
+
+        $items =
+            $this->boxes->contentsFor($box, $user);
+
+        return view('dashboard.index', [
+            'items' => $items,
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * Display a short list of items for the
+     *     given route item.
+     *
+     * @param Request $request
+     * @param Route $route
+     * @return Response
+     */
+    public function displayRouteContents(Request $request, Route $route)
+    {
+
     }
 }

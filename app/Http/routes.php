@@ -1,20 +1,24 @@
 <?php
 
+/**
+ * Routes for dashboard
+ */
 Route::get('/',
+     [
+         'as' => 'home',
+         'uses' => 'DashboardController@index'
+     ]
+);
+Route::get('b/{box}',
     [
-        'as' => 'home', function() {
-            if ( Auth::check() ) {
-                return redirect('/dashboard');
-            }
-            return view('welcome');
-        }
+        'as' => 'dashboard_box_contents',
+        'uses' => 'DashboardController@displayBoxContents'
     ]
 );
-
-Route::get('dashboard',
+Route::get('r/{route}',
     [
-        'as' => 'dashboard',
-        'uses' => 'DashboardController@index'
+        'as' => 'dashboard_route_contents',
+        'uses' => 'DashboardController@displayRouteContents'
     ]
 );
 
