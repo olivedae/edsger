@@ -151,4 +151,79 @@ class Box extends Model
 
         return $permission->is_owner;
     }
+
+    /**
+     * Shares all the items (invitations/permissions)
+     *     for the given instance of boxes;
+     *
+     * @param User $from
+     * @param User $to
+     * @param boolean $canEdit
+     */
+    public function shareAllContents(User $from, User $to, $canEdit)
+    {
+        $boxContents = BoxContainsBoxes::where('parent_box_id', $this->id)->get()->all();
+        $routeContents = BoxContainsRoutes::where('parent_box_id', $this->id)->get()->all();
+
+        foreach ($routeContents as $r) {
+            $route = Route::where('id', $r->route_id)->first();
+
+            $permission = RoutePermission::create([
+                'user_id' => $to->id,
+                'route_id' => $route->id,
+                'is_owner' => false,
+                'can_edit' => $canEdit,
+            ]);
+
+            $invitation = RouteShare::create([
+                'user_from_id' => $from->id,
+                'user_to_id' => $to->id,
+                'route_id' => $route->id,
+                'accepted' => false,
+                'pending' => true,
+            ]);
+        }
+
+        foreach ($boxContents as $b) {
+            $box = Box::where('id', $b->box_id)->first();
+
+            $permission = BoxPermission::create([
+                'user_id' => $to->id,
+                'box_id' => $box->id,
+                'is_owner' => false,
+                'can_edit' => $canEdit,
+            ]);
+
+            $invitation = BoxShare::create([
+                'user_from_id' => $from->id,
+                'user_to_id' => $to->id,
+                'box_id' => $box->id,
+                'accepted' => false,
+                'pending' => true,
+            ]);
+
+            $box->shareAllContents($from, $to, $canEdit);
+        }
+    }
+
+    /**
+     * Deletes all the contents for a
+     *     given box.
+     */
+    public function deleteAllContents()
+    {
+        $boxContents = BoxContainsBoxes::where('parent_box_id', $this->id)->get()->all();
+        $routeContents = BoxContainsRoutes::where('parent_box_id', $this->id)->get()->all();
+
+        foreach ($routeContents as $r) {
+            $route = Route::where('id', $r->route_id)->first();
+            $route->delete();
+        }
+
+        foreach ($boxContents as $b) {
+            $box = Box::where('id', $b->box_id)->first();
+            $box->deleteAllContents();
+            $box->delete();
+        }
+    }
 }

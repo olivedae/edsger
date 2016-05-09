@@ -104,7 +104,7 @@ class BoxController extends Controller
             ]);
         }
 
-        return redirect('dashboard');
+        return redirect('/');
     }
 
     /**
@@ -135,8 +135,9 @@ class BoxController extends Controller
    {
        $this->authorize('destroy', $box);
 
+       $box->deleteAllContents();
        $box->delete();
 
-       return redirect('dashboard');
+       return redirect('/');
    }
 }

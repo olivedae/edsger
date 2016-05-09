@@ -105,7 +105,7 @@ class RouteShareController extends Controller
             'route_id' => $route->id,
         ]);
 
-        return redirect('dashboard');
+        return redirect('home');
     }
 
     /**
@@ -159,6 +159,6 @@ class RouteShareController extends Controller
 
         $containerEntry->delete();
 
-        return redirect('dashboard');
+        return redirect('home');
     }
 }
