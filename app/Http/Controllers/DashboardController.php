@@ -10,6 +10,7 @@ use App\Repositories\RoutePermissionRepository;
 use App\Repositories\DefaultBoxRepository;
 use App\Policies\BoxPolicy;
 use App\Repositories\BoxRepository;
+use App\Repositories\RouteRepository;
 use App\Box;
 use App\Route;
 
@@ -20,7 +21,7 @@ class DashboardController extends Controller
      *
      * @var DefaultBoxRepository
      */
-    protected $defaultBox, $boxes;
+    protected $defaultBox, $boxes, $routes;
 
     /**
      * Create a new controller instance.
@@ -28,11 +29,12 @@ class DashboardController extends Controller
      * @param  DefaultBoxRepository $defaultBox
      * @return void
      */
-    public function __construct(DefaultBoxRepository $defaultBox, BoxRepository $boxes)
+    public function __construct(DefaultBoxRepository $defaultBox, BoxRepository $boxes, RouteRepository $routes)
     {
         $this->middleware('auth');
         $this->defaultBox = $defaultBox;
         $this->boxes = $boxes;
+        $this->routes = $routes;
     }
 
     /**
@@ -52,6 +54,7 @@ class DashboardController extends Controller
         return view('dashboard.index', [
             'items' => $items,
             'user' => $user,
+            'container' => 'default_box',
         ]);
     }
 
@@ -74,6 +77,7 @@ class DashboardController extends Controller
         return view('dashboard.index', [
             'items' => $items,
             'user' => $user,
+            'container' => 'box',
         ]);
     }
 
@@ -87,6 +91,17 @@ class DashboardController extends Controller
      */
     public function displayRouteContents(Request $request, Route $route)
     {
+        $this->authorize('index', $route);
+        $user = $request->user();
 
+        $items =
+            $this->routes->locationsFor($route);
+
+        return view('dashboard.index', [
+            'items' => $items,
+            'user' => $user,
+            'container' => 'route',
+            'route' => $route,
+        ]);
     }
 }

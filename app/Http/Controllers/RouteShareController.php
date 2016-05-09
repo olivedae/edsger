@@ -105,7 +105,7 @@ class RouteShareController extends Controller
             'route_id' => $route->id,
         ]);
 
-        return redirect('home');
+        return redirect('/');
     }
 
     /**

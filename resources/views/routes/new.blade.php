@@ -13,7 +13,7 @@
 
     <div class="row form-group">
         <div class="col-md-4 popup-sizeable-select-list">
-            <label for="parent" class="control-label">Parent Box</label>
+            <label for="parent" class="control-label label-horz">Parent Box</label>
             <select name="parent" class="form-control">
                 <option value="default">Home</option>
                 @foreach ($boxes as $box)
@@ -23,7 +23,7 @@
             <span class="caret select-caret"></span>
         </div>
         <div class="col-md-6">
-            <label for="name" class="control-label">Name</label>
+            <label for="name" class="control-label label-horz">Name</label>
             <div class="input-group">
                 <span class="input-group-addon" id="parent-box">/</span>
                 <input type="text" name="name" id="name" class="form-control" aria-describedby="parent-box">
@@ -37,6 +37,22 @@
         </div>
     </div>
 
+    <div class="row form-group locations-form-group">
+        <div class="col-md-8">
+            <label for="location" class="control-label label-horz">Locations</label>
+            <div class="input-group">
+                <input type="text" name="location" id="location" class="form-control">
+                <span class="input-group-addon" id="add-location">+</span>
+            </div>
+            <input id="locations" type="hidden" name="locations" value='{"list": [ ]}'>
+        </div>
+        <div class="col-md-4">
+            <ul id="locations-list" class="list-group">
+
+            </ul>
+        </div>
+    </div>
+
     <!-- Add task button -->
     <div class="form-group">
         <button type="submit" class="btn btn-primary">
@@ -44,5 +60,65 @@
         </button>
     </div>
 </form>
+
+<script>
+    var google_place_id,
+        address,
+        name;
+
+    function get(id) {
+        return document.getElementById(id);
+    }
+
+    function initMap() {
+        var input = get("location");
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+
+            google_place_id = place.place_id;
+            name = place.name;
+            address = place.formatted_address;
+
+            if (!place.geometry) {
+                return;
+            }
+        });
+    }
+
+    document.getElementById('add-location').addEventListener('click', function() {
+        var location = get("location");
+        var list = get("locations-list");
+        var locationsInput = get("locations");
+
+        if (location.value.length > 0) {
+            var item = document.createElement("li");
+            item.setAttribute("class", "list-group-item");
+            item.appendChild(
+                document.createTextNode(location.value)
+            );
+            list.appendChild(item);
+
+            var locations = JSON.parse(locationsInput.value);
+
+            var addedLocation = {
+                "google_place_id" : google_place_id,
+                "name" : name,
+                "address" : address
+            };
+
+            locations['list'].push(addedLocation);
+
+            locationsInput.value = JSON.stringify(locations);
+
+            location.value = "";
+        }
+    }, false);
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu_Mf5eXxmzGf7IMIM7m8UGLpaP0fxAck&callback=initMap&libraries=places"
+  async defer></script>
 
 @endsection

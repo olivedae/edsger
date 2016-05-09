@@ -15,8 +15,8 @@ class CreateLocationsTable extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('google_place_id');
-            $table->decimal('long', 10, 7);
-            $table->decimal('lat', 10, 7);
+            $table->string('address');
+            $table->string('name');
             $table->timestamps();
         });
     }

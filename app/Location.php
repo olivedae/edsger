@@ -14,15 +14,7 @@ class Location extends Model
      */
     protected $fillable = [
         'google_place_id',
-        'long',
-        'lat'
+        'address',
+        'name',
     ];
-
-    /**
-     * Get an instance of the routes_location
-     */
-    public function route()
-    {
-        return this->hasOne(RouteLocation::class);
-    }
 }

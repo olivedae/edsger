@@ -22,7 +22,7 @@ class CreateRouteLocationsTable extends Migration
             $table->foreign('location_id')
                   ->references('id')->on('locations')
                   ->onDelete('cascade');
-            $table->integer('previous_index')->unsigned();
+            $table->integer('previous_index')->unsigned()->nullable();
             $table->timestamps();
         });
     }

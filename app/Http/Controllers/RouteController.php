@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Location;
+use App\RouteLocation;
 use App\Box;
 use App\BoxPermission;
 use App\Repositories\BoxRepository;
@@ -64,6 +66,7 @@ class RouteController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'parent' => 'required',
+            'locations' => 'required',
         ]);
 
         $inDefaultBox = $request->parent == 'default' ? true : false;
@@ -73,8 +76,6 @@ class RouteController extends Controller
             'description' => $request->description,
             'in_default_box' => true,
         ]);
-
-        // TODO: insert given locations
 
         $user = $request->user();
 
@@ -104,6 +105,41 @@ class RouteController extends Controller
             BoxContainsRoutes::create([
                 'parent_box_id' => $parent->id,
                 'route_id' => $route->id,
+            ]);
+        }
+
+        /**
+         * e.g. user hasn't added any locations
+         *     yet to this route.
+         */
+        if ($request->locations == null) {
+            return redirect('/');
+        }
+
+        $locationsJson = json_decode($request->locations);
+        $locations = $locationsJson->list;
+
+        foreach ($locations as $location) {
+            $storedLocations =
+                Location::where('google_place_id', $location->google_place_id)
+                    ->get();
+
+            $locationDb;
+
+            if (count($storedLocations) == 0) {
+                $locationDb = Location::create([
+                    'google_place_id' => $location->google_place_id,
+                    'name' => $location->name,
+                    'address' => $location->address,
+                ]);
+            } else {
+                $locationDb = $storedLocations[0];
+            }
+
+            RouteLocation::create([
+                'location_id' => $locationDb->id,
+                'route_id' => $route->id,
+                'previous_index' => null,
             ]);
         }
 
