@@ -78,6 +78,7 @@ class DashboardController extends Controller
             'items' => $items,
             'user' => $user,
             'container' => 'box',
+            'box' => $box,
         ]);
     }
 

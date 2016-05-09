@@ -1,7 +1,17 @@
 <div id="browse-options">
     <div class="row">
         <div class="page-header-text col-md-7 col-md-offset-1">
-            Edsger
+            <?php
+                $breadcrumb = "";
+
+                if ($container == 'box') {
+                    $breadcrumb = $box->name;
+                    $indent = " > ";
+                } else if ($container == 'route') {
+                    $breadcrumb = $route->name;
+                }
+            ?>
+            Edsger {{ $container != "default_box" ? "> " : "" }} {{ $breadcrumb }}
         </div>
         <div class="browse-menu col-md-4">
             <ul id="browse-menu" class="list-inline">
