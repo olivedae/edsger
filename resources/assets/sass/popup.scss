@@ -110,3 +110,26 @@
         background: rgb(222, 222, 222);
     }
 }
+
+#locations-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin: 5px auto;
+    li.address, li.comma-seperator {
+        display: inline-block;
+        color: rgb(116, 116, 116);
+        font-weight: 300;
+        font-size: 0.75em;
+    }
+    li.address {
+        padding: 2px 4px;
+        border-radius: 5%;
+        &:hover {
+            background: rgb(237, 237, 237);
+        }
+    }
+    li.comma-seperator {
+        margin: auto 4px auto -2px;
+    }
+}
