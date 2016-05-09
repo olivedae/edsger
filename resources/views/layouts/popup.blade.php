@@ -15,7 +15,7 @@
                 <div class="popup-header">
                     <div class="popup-header-inner">
                         <h2>@yield('header')</h2>
-                        <a href="{{ URL::route('home') }}">x</a>
+                        <a href="javascript:window.open('','_self').close();">x</a>
                     </div>
                 </div>
                 <div class="popup-body">

@@ -7,21 +7,21 @@
             <ul id="browse-menu" class="list-inline">
                 <li>
                     <label for="new_route_button">
-                        <a id="new_route_button" href="{{ URL::route('new_route') }}">
+                        <a target="_blank" id="new_route_button" href="{{ URL::route('new_route') }}">
                             <img src="{{ url('/') }}./img/new_route.ico" alt="New route">
                         </a>
                     </label>
                 </li>
                 <li>
                     <label for="new_box_button">
-                        <a id="new_box_button" href="{{ URL::route('new_box') }}">
+                        <a target="_blank" id="new_box_button" href="{{ URL::route('new_box') }}">
                             <img src="{{ url('/') }}./img/new_box.png" alt="New box">
                         </a>
                     </label>
                 </li>
                 <li>
                     <label for="share_box_button">
-                        <a id="share_box_button" href="#">
+                        <a target="_blank" id="share_box_button" href="#">
                             <img src="{{ url('/') }}./img/share.png" alt="Share box">
                         </a>
                     </label>
@@ -77,7 +77,7 @@
                             </div>
 
                             <div class="col-md-4">
-                                <a href="/shares/{{ get_class($item) == 'App\Route' ? 'routes' : 'boxes' }}/new/{{ $item->id }}" class="btn btn-share">Share</a>
+                                <a target="_blank" href="/shares/{{ get_class($item) == 'App\Route' ? 'routes' : 'boxes' }}/new/{{ $item->id }}" class="btn btn-share">Share</a>
                                 <div class="delete-form">
                                     <form action="/{{ get_class($item) == 'App\Route' ? 'routes' : 'boxes' }}/{{ $item->id }}" method="POST">
                                         {{ csrf_field() }}

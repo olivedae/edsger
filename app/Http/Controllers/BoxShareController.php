@@ -108,7 +108,9 @@ class BoxShareController extends Controller
             'box_id' => $box->id,
         ]);
 
-        return redirect('home');
+        $box->shareAllContents($request->user(), $user, $canEdit);
+
+        return redirect('/');
     }
 
     /**
