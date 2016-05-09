@@ -135,7 +135,7 @@
                             </div>
 
                             @if ($container != 'route')
-                                <div class="col-md-4">
+                                <div class="col-md-4 item-opts">
                                     <a target="_blank" href="/shares/{{ get_class($item) == 'App\Route' ? 'routes' : 'boxes' }}/new/{{ $item->id }}" class="btn btn-share">Share</a>
                                     <div class="delete-form">
                                         <form action="/{{ get_class($item) == 'App\Route' ? 'routes' : 'boxes' }}/{{ $item->id }}" method="POST">
