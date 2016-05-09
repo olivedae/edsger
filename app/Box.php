@@ -205,4 +205,25 @@ class Box extends Model
             $box->shareAllContents($from, $to, $canEdit);
         }
     }
+
+    /**
+     * Deletes all the contents for a
+     *     given box.
+     */
+    public function deleteAllContents()
+    {
+        $boxContents = BoxContainsBoxes::where('parent_box_id', $this->id)->get()->all();
+        $routeContents = BoxContainsRoutes::where('parent_box_id', $this->id)->get()->all();
+
+        foreach ($routeContents as $r) {
+            $route = Route::where('id', $r->route_id)->first();
+            $route->delete();
+        }
+
+        foreach ($boxContents as $b) {
+            $box = Box::where('id', $b->box_id)->first();
+            $box->deleteAllContents();
+            $box->delete();
+        }
+    }
 }
