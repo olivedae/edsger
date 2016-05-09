@@ -44,7 +44,11 @@
 <div class="browse-items-div row">
     <div id="browse-items-header" class="col-md-10 col-md-offset-1">
         <div class="row">
-            <div class="col-md-5">Name</div>
+            @if ($container == 'route')
+                <div class="col-md-8">Name</div>
+            @else
+                <div class="col-md-5">Name</div>
+            @endif
             <div class="col-md-4">Shared with</div>
         </div>
     </div>
@@ -84,7 +88,11 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-4">
+                            @if ($container == 'route')
+                                <div class="col-md-7">
+                            @else
+                                <div class="col-md-4">
+                            @endif
                                 <?php
                                     $href;
                                     $type = get_class($item);
@@ -92,11 +100,14 @@
                                         $href = route('dashboard_route_contents', ['route' => $item->id]);
                                     } else if ($type == 'App\Box') {
                                         $href = route('dashboard_box_contents', ['box' => $item->id]);
-                                    } else {
-                                        $href = "#"; // its a location, not sure what to do here
                                     }
                                 ?>
-                                 <a href="{{ $href }}" class="item-name">{{ $item->name }}</a>
+
+                                 @if ($container == 'route')
+                                    <span class="item-name">{{ $item->name }}</span>
+                                 @else
+                                    <a href="{{ $href }}" class="item-name">{{ $item->name }}</a>
+                                 @endif
                             </div>
 
                             <div class="col-md-3">
@@ -123,19 +134,22 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-4">
-                                @if (get_class($item) != 'App\Location')
+                            @if ($container != 'route')
+                                <div class="col-md-4">
                                     <a target="_blank" href="/shares/{{ get_class($item) == 'App\Route' ? 'routes' : 'boxes' }}/new/{{ $item->id }}" class="btn btn-share">Share</a>
-                                @endif
-                                <div class="delete-form">
-                                    <form action="/{{ get_class($item) == 'App\Route' ? 'routes' : 'boxes' }}/{{ $item->id }}" method="POST">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
+                                    <div class="delete-form">
+                                        <form action="/{{ get_class($item) == 'App\Route' ? 'routes' : 'boxes' }}/{{ $item->id }}" method="POST">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
 
-                                        <button class="btn btn-delete">X</button>
-                                    </form>
+                                            <button class="btn btn-delete">X</button>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <!-- Need to correctly pad list items withouts buttons -->
+                                <div class="location-item-filler"></div>
+                            @endif
                         </div>
                     </div>
                 @endforeach

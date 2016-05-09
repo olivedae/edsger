@@ -63,10 +63,13 @@
       .browse-item {
         padding: 10px 0 34px;
         border-bottom: 1px solid #C2C2C2;
-        a {
+        a, .item-name {
           font-size: 1em;
           color: #595959;
           font-weight: 300;
+          &:hover {
+              text-decoration: none;
+          }
         }
         a.btn, button.btn {
           display: none;
@@ -101,17 +104,14 @@
   }
 }
 
+.location-item-filler {
+	content: " ";
+	height: 24px;
+}
+
 #dashboard-sidebar .delete-form {
   display: inline-block;
   height: 0;
-}
-
-.browse-image {
-  img {
-    width: 19px;
-    height: auto;
-    opacity: .4;
-  }
 }
 
 div.item-icon {
@@ -135,7 +135,7 @@ div.item-icon {
     background: #ead4ee;
 }
 .location-icon {
-    background: rgb(244, 208, 129);
+    background: #f4d081;
 }
 
 .item-shared-with img {
