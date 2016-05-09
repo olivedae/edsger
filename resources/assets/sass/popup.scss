@@ -73,9 +73,11 @@
 .popup-body {
   label {
     color: rgb(176, 176, 176);
-    margin-top: -15px;
-    padding-bottom: 7px;
     font-weight: 300;
+  }
+  .label-horz {
+      margin-top: -15px;
+      padding-bottom: 7px;
   }
   div.popup-sizeable-select-list select {
     background: white;
@@ -91,4 +93,20 @@
 	left: 85%;
 	top: -17;
   }
+}
+
+.locations-form-group {
+    margin-top: 35px;
+    margin-bottom: 25px;
+    .list-group {
+        margin-top: 19px;
+    }
+}
+
+#add-location {
+    font-weight: 900;
+    &:hover {
+        cursor: pointer;
+        background: rgb(222, 222, 222);
+    }
 }

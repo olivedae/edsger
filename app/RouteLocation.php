@@ -24,7 +24,7 @@ class RouteLocation extends Model
      */
     public function location()
     {
-        return this->belongsTo(Location::class);
+        return Location::where('id', $this->location_id);
     }
 
     /**
@@ -32,6 +32,6 @@ class RouteLocation extends Model
      */
     public function route()
     {
-        return this->belongsTo(Route::class);
+        return Route::where('id', $this->route_id);
     }
 }

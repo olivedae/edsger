@@ -13,7 +13,7 @@
 
     <div class="row form-group">
         <div class="col-md-4 popup-sizeable-select-list">
-            <label for="parent" class="control-label">Parent Box</label>
+            <label for="parent" class="control-label label-horz">Parent Box</label>
             <select name="parent" class="form-control">
                 <option value="default">Home</option>
                 @foreach ($boxes as $box)
@@ -23,7 +23,7 @@
             <span class="caret select-caret"></span>
         </div>
         <div class="col-md-6">
-            <label for="name" class="control-label">Name</label>
+            <label for="name" class="control-label label-horz">Name</label>
             <div class="input-group">
                 <span class="input-group-addon" id="parent-box">/</span>
                 <input type="text" name="name" id="name" class="form-control" aria-describedby="parent-box">

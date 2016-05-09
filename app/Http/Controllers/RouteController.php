@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Location;
+use App\RouteLocation;
 use App\Box;
 use App\BoxPermission;
 use App\Repositories\BoxRepository;
@@ -64,6 +66,7 @@ class RouteController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'parent' => 'required',
+            'locations' => 'required',
         ]);
 
         $inDefaultBox = $request->parent == 'default' ? true : false;
@@ -73,8 +76,6 @@ class RouteController extends Controller
             'description' => $request->description,
             'in_default_box' => true,
         ]);
-
-        // TODO: insert given locations
 
         $user = $request->user();
 
@@ -106,6 +107,11 @@ class RouteController extends Controller
                 'route_id' => $route->id,
             ]);
         }
+
+        /**
+         * TODO add locations
+         */
+
 
         return redirect('/');
     }
