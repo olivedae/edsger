@@ -58,8 +58,6 @@ class AuthController extends Controller
             'lastname' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed'
-            // TODO how to assert it being checked
-            //'terms' => 'required|true'
         ]);
     }
 

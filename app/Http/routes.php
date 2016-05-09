@@ -22,7 +22,14 @@ Route::get('r/{route}',
     ]
 );
 
-// Authentication routes...
+/**
+ * Notify on release route
+ */
+Route::post('notify', 'ReleaseNotify@post');
+
+/**
+ * Login routes
+ */
 Route::get('login',
     [
         'as' => 'login',
