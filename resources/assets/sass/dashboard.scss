@@ -1,13 +1,10 @@
 #dashboard-hero {
   height: 950px;
 
-  #dashboard-map {
+  #map {
     @include set-gutter(0);
-    img {
-      opacity: .7;
-      width: 100%;
-      height: 100%;
-    }
+    height: 100%;
+    opacity: .8;
   }
 
   #dashboard-sidebar {

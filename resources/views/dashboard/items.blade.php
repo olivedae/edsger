@@ -40,9 +40,21 @@
     </div>
     @if (count($items) > 0)
         <div class="items-table col-md-10 col-md-offset-1">
-            <div class="list-group browse-items">
+            <div id={{ $container == 'route' ? "is-route-table" : "" }} class="list-group browse-items">
                 @foreach ($items as $item)
                     <div class="list-group-item browse-item">
+                        @if ($container == 'route')
+                            <input class="hidden-location-entry" id="location-entry-{{ $item->id }}"
+                                type="hidden"
+                                value='{
+                                    "location": {
+                                        "google_place_id" : "{{ $item->google_place_id }}",
+                                        "name" : "{{ $item->name }}",
+                                        "address" : "{{ $item->address }}"
+                                    }
+                                }'
+                            >
+                        @endif
                         <div class="row">
                             <div class="col-md-1 browse-image">
                                 @if (get_class($item) == 'App\Route')
@@ -51,33 +63,60 @@
                                     @else
                                         <div class="route-type-icon shared-route-icon"></div>
                                     @endif
-                                @else
+                                @elseif (get_class($item) == 'App\Box')
                                     @if ($item->isOwner($user))
                                         <div class="box-type-icon owner-box-icon"></div>
                                     @else
                                         <div class="box-type-icon shared-box-icon"></div>
                                     @endif
+                                @else
+                                    <div class="location-type-icon"></div>
                                 @endif
                             </div>
 
                             <div class="col-md-4">
-                                 <a href="{{ get_class($item) == 'App\Route' ? route('dashboard_route_contents', ['route' => $item->id]) : route('dashboard_box_contents', ['box' => $item->id]) }}" class="item-name">{{ $item->name }}</a>
+                                <?php
+                                    $href;
+                                    $type = get_class($item);
+                                    if ($type == 'App\Route') {
+                                        $href = route('dashboard_route_contents', ['route' => $item->id]);
+                                    } else if ($type == 'App\Box') {
+                                        $href = route('dashboard_box_contents', ['box' => $item->id]);
+                                    } else {
+                                        $href = "#"; // its a location, not sure what to do here
+                                    }
+                                ?>
+                                 <a href="{{ $href }}" class="item-name">{{ $item->name }}</a>
                             </div>
 
                             <div class="col-md-3">
-                                @if ( count($item->shares($user)) > 0)
-                                    <div class="item-shared-with">
-                                    @foreach ($item->shares($user) as $share)
-                                        <img src={{ $share->user()->icon->data }}>
-                                    @endforeach
-                                    </div>
+                                @if (get_class($item) == 'App\Location')
+                                    @if ( count($route->shares($user)) > 0)
+                                        <div class="item-shared-with">
+                                        @foreach ($route->shares($user) as $share)
+                                            <img src={{ $share->user()->icon->data }}>
+                                        @endforeach
+                                        </div>
+                                    @else
+                                        <span class="item-shared-with">--</span>
+                                    @endif
                                 @else
-                                    <span class="item-shared-with">--</span>
+                                    @if ( count($item->shares($user)) > 0)
+                                        <div class="item-shared-with">
+                                        @foreach ($item->shares($user) as $share)
+                                            <img src={{ $share->user()->icon->data }}>
+                                        @endforeach
+                                        </div>
+                                    @else
+                                        <span class="item-shared-with">--</span>
+                                    @endif
                                 @endif
                             </div>
 
                             <div class="col-md-4">
-                                <a target="_blank" href="/shares/{{ get_class($item) == 'App\Route' ? 'routes' : 'boxes' }}/new/{{ $item->id }}" class="btn btn-share">Share</a>
+                                @if (get_class($item) != 'App\Location')
+                                    <a target="_blank" href="/shares/{{ get_class($item) == 'App\Route' ? 'routes' : 'boxes' }}/new/{{ $item->id }}" class="btn btn-share">Share</a>
+                                @endif
                                 <div class="delete-form">
                                     <form action="/{{ get_class($item) == 'App\Route' ? 'routes' : 'boxes' }}/{{ $item->id }}" method="POST">
                                         {{ csrf_field() }}

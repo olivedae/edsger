@@ -5,6 +5,8 @@ namespace App\Repositories;
 use App\User;
 use App\Route;
 use App\RoutePermission;
+use App\Location;
+use App\RouteLocation;
 
 class RouteRepository
 {
@@ -26,5 +28,27 @@ class RouteRepository
         });
 
         return $routes;
+    }
+
+    /**
+     * Get all the locations for a given route
+     *
+     * @param Route $route
+     * @return Collection
+     */
+    public function locationsFor(Route $route)
+    {
+        $rels =
+            RouteLocation::where('route_id', $route->id)
+                ->get()
+                ->all();
+
+        $items = [];
+
+        foreach ($rels as $rel) {
+            $items[] = Location::where('id', $rel->location_id)->first();
+        }
+
+        return $items;
     }
 }
