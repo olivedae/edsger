@@ -38,18 +38,17 @@
     </div>
 
     <div class="row form-group locations-form-group">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <label for="location" class="control-label label-horz">Locations</label>
+            <!-- <ul id="locations-list">
+
+            </ul> -->
+            <div id="locations-list-wrapper"></div>
             <div class="input-group">
                 <input type="text" name="location" id="location" class="form-control">
                 <span class="input-group-addon" id="add-location">+</span>
             </div>
             <input id="locations" type="hidden" name="locations" value='{"list": [ ]}'>
-        </div>
-        <div class="col-md-4">
-            <ul id="locations-list" class="list-group">
-
-            </ul>
         </div>
     </div>
 
@@ -92,10 +91,38 @@
         var location = get("location");
         var list = get("locations-list");
         var locationsInput = get("locations");
+        var firstItem = false;
+
+        /**
+         * No locations have been added yet,
+         *     so we create the inital list.
+         */
+        if (list === null) {
+            var listWrapper = get("locations-list-wrapper");
+            var newList = document.createElement("ul");
+            newList.setAttribute("id", "locations-list");
+            listWrapper.appendChild(newList);
+            list = get("locations-list");
+            firstItem = true;
+        }
 
         if (location.value.length > 0) {
+            /**
+             * If this is the first item to be added
+             *     the locations list we don't
+             *     include the leading comma.
+             */
+            if (firstItem) {
+                var comma = document.createElement("li");
+                comma.setAttribute("class", "comma-seperator");
+                comma.appendChild(
+                    document.createTextNode(",")
+                );
+                list.appendChild(comma);
+            }
+
             var item = document.createElement("li");
-            item.setAttribute("class", "list-group-item");
+            item.setAttribute("class", "address");
             item.appendChild(
                 document.createTextNode(location.value)
             );
