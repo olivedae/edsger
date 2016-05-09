@@ -30,13 +30,7 @@
             <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm password">
         </div>
     </div> <!-- Enf of password div -->
-    <!--
-    <div class="checkbox">
-        <label class="control-label">
-            <input type="checkbox" name="terms"> I agree to <a href="#">Hooked terms</a>
-        </label>
-    </div>
-    -->
+    
     <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block">Sign up for free</button>
     </div>

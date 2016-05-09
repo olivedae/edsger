@@ -47,15 +47,27 @@
 }
 
 #welcome-info {
-  margin-top: 95px;
+  margin-top: 125px;
+  padding-top: 150px;
+  padding-bottom: 175px;
+  background: rgb(240, 240, 240);
   h2 {
     font-size: 2.85em;
     color: rgb(126, 126, 126);
     font-weight: 200;
+    margin-bottom: 35px;
   }
-  height: 750px;
 }
 
 .welcome-bg-color {
   background: rgb(252, 252, 252);
+}
+
+.welcome-flash-msg {
+    .alert {
+        background-image: none;
+    }
+    .alert-info {
+        margin-top: 52px;
+    }
 }

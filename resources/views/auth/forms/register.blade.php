@@ -41,13 +41,7 @@
         <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm password">
     </div>
 
-    <div class="checkbox col-md-7">
-        <label class="control-label">
-            <input type="checkbox" name="terms"> I agree to <a href="#">Edsger terms</a>
-        </label>
-    </div>
-
-    <div class="form-group col-md-3 col-md-offset-2">
+    <div class="form-group col-md-2 col-md-offset-9">
         <button type="submit" class="btn btn-primary">Register</button>
     </div>
 
