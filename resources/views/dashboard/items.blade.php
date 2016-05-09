@@ -59,18 +59,18 @@
                             <div class="col-md-1 browse-image">
                                 @if (get_class($item) == 'App\Route')
                                     @if ($item->isOwner($user))
-                                        <div class="route-type-icon owner-route-icon"></div>
+                                        <div class="item-icon item-owner-icon"><span>R</span></div>
                                     @else
-                                        <div class="route-type-icon shared-route-icon"></div>
+                                        <div class="item-icon item-shared-icon"><span>R</span></div>
                                     @endif
                                 @elseif (get_class($item) == 'App\Box')
                                     @if ($item->isOwner($user))
-                                        <div class="box-type-icon owner-box-icon"></div>
+                                        <div class="item-icon item-owner-icon"><span>B</span></div>
                                     @else
-                                        <div class="box-type-icon shared-box-icon"></div>
+                                        <div class="item-icon item-shared-icon"><span>B</span></div>
                                     @endif
                                 @else
-                                    <div class="location-type-icon"></div>
+                                    <div class="item-icon location-icon"><span>L</span></div>
                                 @endif
                             </div>
 
