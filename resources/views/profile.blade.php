@@ -16,32 +16,43 @@
 
             <div id="profile-content" class="tab-pane fade in active padded">
 
-                <div class="row">
-                    <div class="padded row">
-                        <div class="col-md-2">{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</div>
-                        <div class="col-md-2"><a class="" href="#" role="button">Update Name</a></div>
-                    </div>
+                <div class="name-and-email container">
 
-                    <div class="padded row">
-                        <div class="col-md-2">{{ Auth::user()->email }}</div>
-                        <div class="col-md-2"><a class="" href="#" role="button">Update Email</a></div>
-                    </div>
+                        <div class="row">
+                            <p class="intro-text" class="col-md-2">Name and Email</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</div>
+                            <div class="col-md-2"><a class="" href="#" role="button">Update Name</a></div>
+                        </div>
+
+                        <div class="row top-buffer">
+                            <div class="col-md-2">{{ Auth::user()->email }}</div>
+                            <div class="col-md-2"><a class="" href="#" role="button">Update Email</a></div>
+                        </div>
                 </div>
 
-                <div class="row">
-                    <div class="padded row">
-                        <div class="col-md-2">
-                            <img id "profile-icon" src= {{ Auth::user()->icon->data }} class="padded img-rounded img-responsive">
+                <div class="change-user-icon container">
+                    <div class="row">
+                        <p class="intro-text" class="col-md-2">User Icon</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="icon-tooltip col-md-2">
+                            <a href="#" role="button" class="padded-image">
+                                <img id "profile-icon" src= {{ Auth::user()->icon->data }} class="img-rounded img-responsive">
+                                <span>Change Icon</span>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <a id="change-icon-link" class="" href="#" role="button">Change Icon</a>
 
             </div>
 
             <div id="security" class="tab-pane fade padded">
-                <div class="row">
-                    <div class="padded row">
+                <div class="container" id="password-container">
+                    <div class="row">
                         <div class="col-md-2">Password</div>
                         <div class="col-md-2"><a href="#" role="button">Reset</a></div>
                     </div>

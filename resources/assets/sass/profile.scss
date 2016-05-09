@@ -2,6 +2,44 @@
     margin-top : 65px;
 }
 
+#profile-icon {
+    width : 64px;
+    height : 64px;
+    margin-left : 20px;
+    padding: 4px solid black;
+}
+
+// a:link img { border: 2px solid blue; }
+// a:visited img { border: 2px solid purple; }
+a:hover img {
+    outline: 3px solid #222222;
+    outline-style: dashed;
+}
+
+#change-icon-link {
+    padding-left: 10px;
+}
+
+#password-container {
+    padding-top:20px;
+}
+
+.intro-text {
+    color: #BABABA;
+}
+
+.name-and-email {
+    padding-top: 20px;
+}
+
+.change-user-icon {
+    padding-top: 20px;
+}
+
+.top-buffer {
+    margin-top:5px;
+}
+
 .padded {
     margin : 10px;
 }
@@ -10,15 +48,47 @@
     padding-top: 60px;
 }
 
-#profile-icon {
-    width : 64px;
-    height : 64px;
-}
-
-#change-icon-link {
-    padding-left: 10px;
-}
-
 .padded-left {
     padding-left: 10px;
+}
+
+.icon-tooltip img{
+    width: 128px;
+    height: 128px;
+    //display:block;
+    //margin:0 auto;
+}
+
+.icon-tooltip {
+    position:relative;
+    display:inline-block;
+}
+
+.icon-tooltip span {
+    position:absolute;
+    display:table;
+    top: 50px;
+    background:#333;
+    color:#fff;
+    border-radius:4px;
+    padding:3px 6px;
+    opacity:0;
+    transition: 0.2s all ease-out;
+    left: 100%;
+}
+
+.icon-tooltip img:hover ~ * {
+    opacity:1;
+}
+
+.icon-tooltip span:after {
+    content: " ";
+	width: 0;
+	height: 0;
+    position: absolute;
+    top: 10%;
+    right: 95%;
+    border-width: 10px;
+	border-style: solid;
+    border-color: transparent #333 transparent transparent;
 }
