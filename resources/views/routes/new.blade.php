@@ -62,7 +62,6 @@
 </form>
 
 <script>
-
     var google_place_id,
         address,
         name;

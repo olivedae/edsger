@@ -109,9 +109,39 @@ class RouteController extends Controller
         }
 
         /**
-         * TODO add locations
+         * e.g. user hasn't added any locations
+         *     yet to this route.
          */
+        if ($request->locations == null) {
+            return redirect('/');
+        }
 
+        $locationsJson = json_decode($request->locations);
+        $locations = $locationsJson->list;
+
+        foreach ($locations as $location) {
+            $storedLocations =
+                Location::where('google_place_id', $location->google_place_id)
+                    ->get();
+
+            $locationDb;
+
+            if (count($storedLocations) == 0) {
+                $locationDb = Location::create([
+                    'google_place_id' => $location->google_place_id,
+                    'name' => $location->name,
+                    'address' => $location->address,
+                ]);
+            } else {
+                $locationDb = $storedLocations[0];
+            }
+
+            RouteLocation::create([
+                'location_id' => $locationDb->id,
+                'route_id' => $route->id,
+                'previous_index' => null,
+            ]);
+        }
 
         return redirect('/');
     }
