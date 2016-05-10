@@ -112,7 +112,7 @@
              *     the locations list we don't
              *     include the leading comma.
              */
-            if (firstItem) {
+            if (firstItem !== true) {
                 var comma = document.createElement("li");
                 comma.setAttribute("class", "comma-seperator");
                 comma.appendChild(
