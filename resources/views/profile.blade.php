@@ -5,6 +5,7 @@
 @section('content')
 
 <section class="container">
+
     <div class="row" id="profile">
         <h3>Settings</h3>
         <ul class="nav nav-tabs">
@@ -13,7 +14,6 @@
         </ul>
 
         <div class="tab-content">
-
             <div id="profile-content" class="tab-pane fade in active padded">
 
                 <div class="name-and-email container">
@@ -24,7 +24,7 @@
 
                         <div class="row">
                             <div class="col-md-2">{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</div>
-                            <div class="col-md-2"><a class="" href="#" role="button">Update Name</a></div>
+                            <div class="col-md-2"><a data-toggle="modal" class="button btn-link" href='#' data-target='#update-name-modal'>Update Name</a></div>
                         </div>
 
                         <div class="row top-buffer">
@@ -32,7 +32,6 @@
                             <div class="col-md-2"><a class="" href="#" role="button">Update Email</a></div>
                         </div>
                 </div>
-
                 <div class="change-user-icon container">
                     <div class="row">
                         <p class="intro-text" class="col-md-2">User Icon</p>
@@ -41,7 +40,7 @@
                     <div class="row">
                         <div class="icon-tooltip col-md-2">
                             <a href="#" role="button" class="padded-image">
-                                <img id "profile-icon" src= {{ Auth::user()->icon->data }} class="img-rounded img-responsive">
+                                <img id "profile-icon" src= {{ Auth::user()->icon->data }} class="img-rounded img-responsive user-icon-link">
                                 <span>Change Icon</span>
                             </a>
                         </div>
@@ -63,6 +62,11 @@
     </div>
 </section>
 
-<script src="//cdn.jsdelivr.net/tether/1.3.2/tether.min.js"></script>
+@endsection
+
+@section('modals')
+
+    @include('profile.update-name')
+    <!-- will eventually have other modals like 'update-email' -->
 
 @endsection

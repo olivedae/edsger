@@ -46,6 +46,15 @@ Route::get('profile',
         }
     ]
 );
+// Route::get('update-name',
+//     [
+//         'as' => 'update-name',
+//         'uses' => 'ProfileController@getUpdateName'
+//     ]
+// );
+Route::post('update-name',
+    ['as' => 'update-name', 'uses' => 'ProfileController@postUpdateName']
+);
 
 // Registration routes...
 Route::get('register',

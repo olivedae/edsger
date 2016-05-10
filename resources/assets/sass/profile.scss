@@ -6,13 +6,14 @@
     width : 64px;
     height : 64px;
     margin-left : 20px;
-    padding: 4px solid black;
+    margin: -3px;
 }
 
 // a:link img { border: 2px solid blue; }
 // a:visited img { border: 2px solid purple; }
-a:hover img {
+a:hover img.user-icon-link {
     outline: 3px solid #222222;
+    outline-offset: 3px;
     outline-style: dashed;
 }
 
