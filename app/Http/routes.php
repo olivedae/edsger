@@ -52,7 +52,7 @@ Route::get('profile',
 //         'uses' => 'ProfileController@getUpdateName'
 //     ]
 // );
-Route::post('update-name',
+Route::post('profile/update-name/',
     ['as' => 'update-name', 'uses' => 'ProfileController@postUpdateName']
 );
 

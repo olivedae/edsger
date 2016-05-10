@@ -68,5 +68,24 @@
 
     @include('profile.update-name')
     <!-- will eventually have other modals like 'update-email' -->
+@endsection
 
+@section('custom_scripts')
+    @if (isset($modal))
+        <script>
+        
+        var options = {
+            "show" : true
+        }
+        $(document).ready(function(){
+            $("#update-name-modal").modal(options);
+            $("#update-name-modal").find(".error_box").after("<div class=\"alert alert-danger\">Formatting Error!</div>");
+        });
+
+        $(document).on('hide.bs.modal','#update-name-modal', function () {
+                $("#update-name-modal").find(".alert").remove();
+        });
+
+        </script>
+    @endif
 @endsection

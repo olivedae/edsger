@@ -19,7 +19,7 @@
             <!-- Modal Body -->
             <div class="modal-body">
 
-                <form id="update-name-modal-form" method="POST" action="{{ URL::route('update-name') }}" class="form-horizontal">
+                <form id="update-name-modal-form" method="post" action="{{ route('update-name') }} ", class="form-horizontal">
                   {{ csrf_field() }}
                   <div class="form-group">
                     <label  class="col-sm-2 control-label"
@@ -44,6 +44,7 @@
                   </button>
 
                 </form>
+                <div class="error_box"></div>
 
             </div>
 

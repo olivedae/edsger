@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Input;
 use App\Http\Requests;
@@ -18,7 +19,7 @@ class ProfileController extends Controller
         return view('profile.name');
     }
 
-    public function postUpdateName($request) {
+    public function postUpdateName(Request $request) {
 
         $rules = array(
             'first_name' => 'Required|max:255',
@@ -35,8 +36,8 @@ class ProfileController extends Controller
 
         $user = $request->user();
         if($user) {
-            $user->first_name = $first_name;
-            $user->last_name = $last_name;
+            $user->first_name = $request->input('first_name');
+            $user->last_name = $request->input('last_name');
             $user->save();
         }
 
