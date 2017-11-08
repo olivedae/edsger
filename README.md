@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="info/banner.png" height="auto" width="45%">
+    Edsger
 </p>
 <p align="center" style="margin-bottom:50px;">
     <i>A route for the places you'll go</i>
