@@ -13,13 +13,8 @@
 
 <section id="edsger-letters">
     <div class="container">
-        <div class="row">
-            <img class="be" src="img/letters/big-e.png" alt="E">
-            <img class="d" src="img/letters/d.png" alt="d">
-            <img class="s" src="img/letters/s.png" alt="s">
-            <img class="g" src="img/letters/g.png" alt="g">
-            <img class="e" src="img/letters/e.png" alt="e">
-            <img class="r" src="img/letters/r.png" alt="r">
+        <div class="row center">
+            <h1>Edsger</h1>
         </div>
     </div>
 </section>
